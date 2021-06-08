@@ -1,10 +1,11 @@
 import React from "react";
 import Configurations from "./Configurations/Configurations";
 import ProjectNavigator from "./ProjectNavigator/ProjectNavigator";
+import './SideNav.styles.css'
 
 const SideNav = () => {
   return (
-    <div style={{ flex: "20%", height: "500px", border: "1px solid #d4d6d8" }}>
+    <div className="sideNavContianer">
       <ProjectNavigator />
       <Configurations />
     </div>

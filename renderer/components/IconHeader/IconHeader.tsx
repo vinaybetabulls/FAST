@@ -1,8 +1,9 @@
 import React from "react";
+import "./IconHeader.styles.css";
 
 const IconHeader = () => {
   return (
-    <div style={{ background: "white", color: "#000", padding: "0 8px" }}>
+    <div className="iconHeaderContainer">
       <h1>IconHeader</h1>
     </div>
   );

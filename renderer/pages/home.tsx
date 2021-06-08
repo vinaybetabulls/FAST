@@ -13,7 +13,6 @@ function Home() {
       <Header>
         <IconHeader />
       </Header>
-
       <Content style={{ display: "flex" }}>
         <SideNav />
         <MiteBodyContainer />
