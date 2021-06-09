@@ -1,19 +1,19 @@
 import React from "react";
-import { Tabs } from "antd";
-
-const { TabPane } = Tabs;
+import { Radio } from 'antd';
+const RadioButton = Radio.Button;
+const RadioGroup = Radio.Group;
 type Props = {
-  toggleNavigatorTab: (value: string) => void;
+  toggleNavigatorTab: (e: any) => void;
 };
 
 const ProjectNavigatorHeading = ({ toggleNavigatorTab }: Props) => {
   return (
     <div>
       <h3>Project Navigation</h3>
-      <Tabs defaultActiveKey="1" onChange={toggleNavigatorTab}>
-        <TabPane tab="TestCase" key="TestCase"></TabPane>
-        <TabPane tab="TestSession" key="TestSession"></TabPane>
-      </Tabs>
+      <RadioGroup onChange={toggleNavigatorTab} defaultValue="TestCase">
+        <RadioButton value="TestCase">TestCase</RadioButton>
+        <RadioButton value="TestSession">TestSession</RadioButton>
+      </RadioGroup>
     </div>
   );
 };

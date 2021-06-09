@@ -4,8 +4,8 @@ import ProjectNavigatorHeading from "./ProjectNavigatorHeading/ProjectNavigatorH
 const ProjectNavigator = () => {
   const [displyNavigatoryTree, setDisplayNavigatorTree] = useState("TestCase");
 
-  const toggleNavigatorTab = (key) => {
-    setDisplayNavigatorTree(key);
+  const toggleNavigatorTab = (e: any) => {
+    setDisplayNavigatorTree(e?.target.value);
   };
   return (
       <div className="project-navigator">
