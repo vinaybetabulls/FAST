@@ -5,33 +5,38 @@ const treeData = [
   {
     title: "DemoProject",
     key: "project1",
-    isParent: true,
+    shortName: "parent1",
     icon: <CarryOutOutlined />,
     children: [
       {
-        title: "Test Case1",
+        title: "Test Suite1",
+        shortName:"test_suite_1_1",
         key: "0-0-0",
         icon: <CarryOutOutlined />,
         children: [
           {
-            title: "Test suite 1",
+            title: "Test case 1",
+            shortName: "test_Case_1_1",
             key: "0-0-0-0",
             icon: <CarryOutOutlined />,
           },
           {
-            title: "Test suite 2",
+            title: "Test case 2",
+            shortName: 'test_case_1_2',
             key: "0-0-0-2",
             icon: <CarryOutOutlined />,
           },
         ],
       },
       {
-        title: "Test case 2",
+        title: "Test Suite 2",
         key: "0-0-1",
+        shortName:"test_suite_2",
         icon: <CarryOutOutlined />,
         children: [
           {
             title: "Test suite 2-1",
+            shortName: "test_suite_2_1",
             key: "0-0-1-0",
             icon: <CarryOutOutlined />,
           },
