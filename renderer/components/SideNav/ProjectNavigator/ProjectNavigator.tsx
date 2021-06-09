@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import TreeView from "../../TreeView/TreeView";
 import ProjectNavigatorHeading from "./ProjectNavigatorHeading/ProjectNavigatorHeading";
 
 const ProjectNavigator = () => {
@@ -8,16 +9,16 @@ const ProjectNavigator = () => {
     setDisplayNavigatorTree(e?.target.value);
   };
   return (
-      <div className="project-navigator">
-        <ProjectNavigatorHeading toggleNavigatorTab={toggleNavigatorTab} />
-        <div>
-          {displyNavigatoryTree == "TestCase" ? (
-            <h3>Test case tree view</h3>
-          ) : (
-            <h3>Test suite tree view</h3>
-          )}
-        </div>
+    <div className="project-navigator">
+      <ProjectNavigatorHeading toggleNavigatorTab={toggleNavigatorTab} />
+      <div>
+        {displyNavigatoryTree == "TestCase" ? (
+          <TreeView />
+        ) : (
+          <h3>Test suite tree view</h3>
+        )}
       </div>
+    </div>
   );
 };
 
