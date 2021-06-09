@@ -1,14 +1,27 @@
 import React from "react";
 import Configurations from "./Configurations/Configurations";
 import ProjectNavigator from "./ProjectNavigator/ProjectNavigator";
-import './SideNav.styles.css'
+import "./SideNav.styles.css";
+import { Resizable } from "re-resizable";
 
 const SideNav = () => {
   return (
-    <div className="sideNavContianer">
-      <ProjectNavigator />
-      <Configurations />
-    </div>
+    <Resizable
+      defaultSize={{
+        width: "20%",
+        height: "682px",
+      }}
+      className="sideNavContianer"
+      maxWidth="35%"
+      minWidth="20%"
+      minHeight="682px"
+      maxHeight="682px"
+    >
+      <div>
+        <ProjectNavigator />
+        <Configurations />
+      </div>
+    </Resizable>
   );
 };
 

@@ -1,11 +1,24 @@
-import React from 'react'
+import React, { useState } from "react";
+import ProjectNavigatorHeading from "./ProjectNavigatorHeading/ProjectNavigatorHeading";
 
 const ProjectNavigator = () => {
-    return (
-        <div className="project-navigator">
-            <h3>ProjectNavigator</h3>
-        </div>
-    )
-}
+  const [displyNavigatoryTree, setDisplayNavigatorTree] = useState("TestCase");
 
-export default ProjectNavigator
+  const toggleNavigatorTab = (key) => {
+    setDisplayNavigatorTree(key);
+  };
+  return (
+      <div className="project-navigator">
+        <ProjectNavigatorHeading toggleNavigatorTab={toggleNavigatorTab} />
+        <div>
+          {displyNavigatoryTree == "TestCase" ? (
+            <h3>Test case tree view</h3>
+          ) : (
+            <h3>Test suite tree view</h3>
+          )}
+        </div>
+      </div>
+  );
+};
+
+export default ProjectNavigator;
