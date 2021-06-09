@@ -1,9 +1,11 @@
 import React from 'react'
+import "./Footer.styles.css";
 
 const Footer = () => {
     return (
-        <div>
-            <h1>Footer</h1>
+        <div className="mite-footer">
+            <p>You have selected MITE Project </p>
+            <p>&copy;2021 NAVTECH ALL RIGHTS RESERVED</p>
         </div>
     )
 }

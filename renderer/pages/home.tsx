@@ -10,7 +10,7 @@ const { Header, Content, Footer } = Layout;
 function Home() {
   return (
     <React.Fragment>
-      <Header>
+      <Header className="icon-header">
         <IconHeader />
       </Header>
       <Content style={{ display: "flex" }}>

@@ -2,8 +2,8 @@ import React from 'react'
 
 const ProjectNavigator = () => {
     return (
-        <div>
-            <h1>ProjectNavigator</h1>
+        <div className="project-navigator">
+            <h3>ProjectNavigator</h3>
         </div>
     )
 }

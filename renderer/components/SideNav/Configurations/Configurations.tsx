@@ -2,8 +2,8 @@ import React from 'react'
 
 const Configurations = () => {
     return (
-        <div>
-            <h1>Configurations</h1>
+        <div className="configuratios">
+            <h3>Configurations</h3>
         </div>
     )
 }
