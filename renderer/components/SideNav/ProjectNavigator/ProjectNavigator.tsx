@@ -10,14 +10,14 @@ const ProjectNavigator = () => {
   };
   return (
     <div className="project-navigator">
-      <ProjectNavigatorHeading toggleNavigatorTab={toggleNavigatorTab} />
-      <div>
+      <ProjectNavigatorHeading />
+      {/* <div>
         {displyNavigatoryTree == "TestCase" ? (
-          <TreeView />
+           < />
         ) : (
           <h3>Test suite tree view</h3>
         )}
-      </div>
+      </div> */}
     </div>
   );
 };

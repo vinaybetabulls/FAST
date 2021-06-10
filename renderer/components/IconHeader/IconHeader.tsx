@@ -2,8 +2,6 @@ import React from "react";
 import "./IconHeader.styles.css";
 import { 
   SaveFilled , 
-  DownloadOutlined, 
-  FolderOpenOutlined,
   FolderOpenFilled, 
   FolderAddOutlined, 
   DeleteFilled , 
@@ -11,7 +9,11 @@ import {
   RotateLeftOutlined,
   RotateRightOutlined,
   CopyFilled ,
-  FolderAddTwoTone
+  PlusCircleFilled,
+  MinusCircleFilled,
+  RedoOutlined,
+  UndoOutlined,
+  FileAddOutlined
 } from '@ant-design/icons'
 
 const IconHeader = () => {
@@ -26,14 +28,11 @@ const IconHeader = () => {
       <RotateRightOutlined />
       <RotateLeftOutlined />
       <CopyFilled  />
-      <FolderAddOutlined style={{color: "green"}}/>
-      <FolderOpenFilled style={{color:"#ffe69a"}} />
-      <SaveFilled  style={{color:"#4189ba"}} />
-      <DeleteFilled  style={{color: "#DE4F60" }} />
-      <StopOutlined style={{color:"orange"}}/>
-      <RotateRightOutlined />
-      <RotateLeftOutlined />
-      <CopyFilled  />
+      <PlusCircleFilled />
+      <MinusCircleFilled />
+      <UndoOutlined />
+      <RedoOutlined />
+      <FileAddOutlined />
       </div>
       <div className="testCaseOptions">
         <p>Test Case dropdown</p>
