@@ -1,42 +1,17 @@
-<p align="center"><img src="https://i.imgur.com/NrkTPe9.png"></p>
+# FAST
 
-## Usage
+## Getting Started
 
-### Create an App
+First, run the development server:
 
-```
-# with npx
-$ npx create-nextron-app my-app --example with-typescript-ant-design
-
-# with yarn
-$ yarn create nextron-app my-app --example with-typescript-ant-design
-
-# with pnpx
-$ pnpx create-nextron-app my-app --example with-typescript-ant-design
+```bash
+yarn install
+yarn dev
 ```
 
-### Install Dependencies
+Open [http://localhost:8888](http://localhost:8888) with your browser to see the result.
+and also it will open in Desktop app mode
 
-```
-$ cd my-app
-
-# using yarn or npm
-$ yarn (or `npm install`)
-
-# using pnpm
-$ pnpm install --shamefully-hoist
-```
-
-### Use it
-
-```
-# development mode
-$ yarn dev (or `npm run dev` or `pnpm run dev`)
-
-# production build
-$ yarn build (or `npm run build` or `pnpm run build`)
-```
-
-## Resources
-
-<https://ant.design>
+To run the application in production mode
+yarn install
+yarn build
