@@ -3,7 +3,9 @@ import './MiteBodyContainer.styles.css'
 const MiteBodyContainer = () => {
     return (
         <div className="miteBodyConainer">
-            <h3>MiteBodyContainer</h3>
+            <div className="mite-nav-title">
+                <h3>MITE Project</h3>
+            </div>
         </div>
     )
 }

@@ -1,4 +1,4 @@
-body {
+body, .ant-layout-footer {
     font-family: 'SF Pro Text', 'SF Pro Icons', 'Helvetica Neue', 'Helvetica',
       'Arial', sans-serif !important;
     margin: 0 auto;
@@ -16,4 +16,46 @@ body {
 .mite-footer p {
   margin: 0;
 }
+.card-container > .ant-tabs-card > .ant-tabs-content {
+    height: 120px;
+    margin-top: -16px;
+  }
   
+  .card-container > .ant-tabs-card > .ant-tabs-content > .ant-tabs-tabpane {
+    background: #fff;
+    padding: 16px;
+  }
+  
+  .card-container > .ant-tabs-card > .ant-tabs-bar {
+    border-color: #fff;
+  }
+  
+  .card-container > .ant-tabs-card > .ant-tabs-bar .ant-tabs-tab {
+    border-color: transparent;
+    background: transparent;
+  }
+  
+  .card-container > .ant-tabs-card > .ant-tabs-bar .ant-tabs-tab-active {
+    border-color: #fff;
+    background: #fff;
+  }
+  .ant-tabs-nav-list .ant-tabs-card > .ant-tabs-nav .ant-tabs-tab {
+      background-color: #edf0f1;
+  }
+  .ant-tabs-content-holder {
+      padding: 0 14px !important;
+  }
+  .project-nav-title {
+    padding: 8px 14px;
+    background-color: #d3e2f0;
+  }
+  .mite-nav-title {
+    background: #82bcee;
+    padding: 8px 14px;
+  }
+  .project-nav-title h3, .mite-nav-title h3 {
+      margin-bottom: 0
+  }
+  .mite-nav-title h3 {
+      color: #fff;
+  }
