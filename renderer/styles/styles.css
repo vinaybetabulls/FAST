@@ -46,16 +46,35 @@ body, .ant-layout-footer {
       padding: 0 14px !important;
   }
   .project-nav-title {
-    padding: 8px 14px;
+    padding: 6px 14px;
     background-color: #d3e2f0;
   }
   .mite-nav-title {
-    background: #82bcee;
-    padding: 8px 14px;
+    background: #d3e2f0;
+    padding: 6px 14px;
+  }
+  .project-navigator {
+
   }
   .project-nav-title h3, .mite-nav-title h3 {
-      margin-bottom: 0
+      margin-bottom: 0;
+      color: #000;
   }
   .mite-nav-title h3 {
-      color: #fff;
+      color: #000;
+  }
+  .ant-tabs-card > .ant-tabs-nav .ant-tabs-tab {
+    background-color: #edf0f1 !important;
+  }
+  .ant-tabs-card > .ant-tabs-nav .ant-tabs-tab-active {
+    background-color: #fff !important;
+  }
+  .ant-tabs-content-holder {
+    overflow-x: auto !important;
+  }
+  .ant-tree .ant-tree-node-content-wrapper {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-width: 200px;
   }
