@@ -2,7 +2,7 @@ import React from 'react'
 
 const Configurations = () => {
     return (
-        <div className="configuratios">
+        <div className="project-nav-title">
             <h3>Configurations</h3>
         </div>
     )
