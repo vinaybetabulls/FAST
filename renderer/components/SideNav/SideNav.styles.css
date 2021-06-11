@@ -1,10 +1,12 @@
 .sideNavContianer {
   flex: 20%;
   height: 100%;
-  border: 1px solid #d4d6d8;
-  border-bottom: 0;
+  border-right: 10px solid #d7e2e8;
 }
-.project-navigator, .configuratios {
+.project-navigator {
+  min-height: 500px;
+}
+.configuratios {
   min-height: 350px;
 }
 
