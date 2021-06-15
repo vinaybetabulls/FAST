@@ -1,6 +1,7 @@
 .sideNavContianer {
   flex: 20%;
   height: 100%;
+  /* position: relative; */
   border-right: 10px solid #d7e2e8;
 }
 .project-navigator {
@@ -8,6 +9,10 @@
 }
 .configuratios {
   min-height: 350px;
+}
+.bbr {
+  position: absolute;
+  border-right: 10px solid #d7e2e8;
 }
 
 

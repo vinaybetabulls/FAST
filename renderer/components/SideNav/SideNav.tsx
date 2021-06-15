@@ -14,9 +14,10 @@ const SideNav = () => {
       className="sideNavContianer"
       maxWidth="35%"
       minWidth="20%"
-      minHeight="682px"
-      maxHeight="682px"
+      minHeight="688px"
+      maxHeight="688px"
     >
+      <div className="bbr"></div>
       <div>
         <ProjectNavigator />
         <Configurations />

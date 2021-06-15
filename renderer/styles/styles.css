@@ -42,9 +42,6 @@ body, .ant-layout-footer {
   .ant-tabs-nav-list .ant-tabs-card > .ant-tabs-nav .ant-tabs-tab {
       background-color: #edf0f1;
   }
-  .ant-tabs-content-holder {
-      padding: 0 14px !important;
-  }
   .project-nav-title {
     padding: 6px 14px;
     background-color: #d3e2f0;
@@ -68,6 +65,8 @@ body, .ant-layout-footer {
   }
   .ant-tabs-content-holder {
     overflow-x: auto !important;
+    padding: 0 14px !important;
+    height: 408px;
   }
   .ant-tree .ant-tree-node-content-wrapper {
     overflow: hidden;
@@ -78,4 +77,7 @@ body, .ant-layout-footer {
   .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
     color: #547899 !important;
     text-shadow: 0 0 0.25px currentColor;
+}
+.ant-tabs-top > .ant-tabs-nav, .ant-tabs-bottom > .ant-tabs-nav, .ant-tabs-top > div > .ant-tabs-nav, .ant-tabs-bottom > div > .ant-tabs-nav {
+  margin-bottom: 8px !important;
 }
