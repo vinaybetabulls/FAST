@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { Menu, Tree } from "antd";
 import { treeMockData } from "../../common/data/treeData";
 import responsiveObserve from "antd/lib/_util/responsiveObserve";
-
+import Modal from "../Modal/Modal";
+import TestCaseForm from "../TestCase/CreateTestCase/CreateTestCase";
 const menu = (
   <Menu>
     <Menu.Item key="1">1st menu item</Menu.Item>
@@ -13,18 +14,22 @@ const menu = (
 
 const TreeView = () => {
   const [treeData, setTreeData] = useState(treeMockData);
-  const [isOPen, setOpen] = useState(false)
+  const [isOPen, setOpen] = useState(false);
+  const [isModalOpen, setModalOpen] = useState(false);
+  const [treeLevelForm, setTreeLevelForm] = useState("");
+  let level = 0;
 
   const onSelect = (selectedKeys, info) => {
     console.log("selected", selectedKeys, info);
   };
 
-  const onDrop = info => {
+  const onDrop = (info) => {
     console.log(info);
     const dropKey = info.node.key;
     const dragKey = info.dragNode.key;
-    const dropPos = info.node.pos.split('-');
-    const dropPosition = info.dropPosition - Number(dropPos[dropPos.length - 1]);
+    const dropPos = info.node.pos.split("-");
+    const dropPosition =
+      info.dropPosition - Number(dropPos[dropPos.length - 1]);
 
     const loop = (data, key, callback) => {
       for (let i = 0; i < data.length; i++) {
@@ -47,9 +52,9 @@ const TreeView = () => {
 
     if (!info.dropToGap) {
       // Drop on the content
-      loop(data, dropKey, item => {
+      loop(data, dropKey, (item) => {
         item.children = item.children || [];
-        // where to insert 示例添加到头部，可以是随意位置
+        // where to insert
         item.children.unshift(dragObj);
       });
     } else if (
@@ -57,9 +62,9 @@ const TreeView = () => {
       info.node.props.expanded && // Is expanded
       dropPosition === 1 // On the bottom gap
     ) {
-      loop(data, dropKey, item => {
+      loop(data, dropKey, (item) => {
         item.children = item.children || [];
-        // where to insert 示例添加到头部，可以是随意位置
+        // where to insert
         item.children.unshift(dragObj);
         // in previous version, we use item.children.push(dragObj) to insert the
         // item to the tail of the children
@@ -78,7 +83,7 @@ const TreeView = () => {
       }
     }
 
-    setTreeData(data)
+    setTreeData(data);
   };
 
   const createTestSuite = () => {};
@@ -87,11 +92,13 @@ const TreeView = () => {
   // get the object of selected element
   function getObject(treeObject, matchElement) {
     if (treeObject.shortName == matchElement) {
-      return treeObject;
+      level = level + 1;
+      return { treeObject, level };
     } else {
       for (let i = 0; i < treeObject?.children?.length; i++) {
+        level = level + 1;
         let response = getObject(treeObject.children[i], matchElement);
-        if (response) return response;
+        if (response) return { response, level };
       }
     }
   }
@@ -109,44 +116,67 @@ const TreeView = () => {
   }
   // TODO - as of now just adding a new tree when user right click on tree element
   const onRightClick = (event) => {
+    console.log({ event });
     let response;
-    setOpen(true)
-    
-    // const udatedTree = treeData.map((element) => {
-    //   response = getObject(element, event.node.shortName);
-    //   if (response) {
-    //     if (response.children) {
-    //       response.children.push({
-    //         title: `LabView_RVC_DEMO_${uuidv4()}`,
-    //         key: uuidv4(),
-    //         shortName: uuidv4(),
-    //       });
-    //     } else {
-    //       response.children = [];
-    //       response.children.push({
-    //         title: `LabView_RVC_DEMO_${uuidv4()}`,
-    //         key: uuidv4(),
-    //         shortName: uuidv4(),
-    //       });
-    //     }
-    //     return { ...response, ...element };
-    //   } else {
-    //     return element;
-    //   }
-    // });
-    // setTreeData(udatedTree);
+    setOpen(true);
+    level = 0;
+    treeData.map((element) => {
+      response = getObject(element, event.node.shortName);
+      if (response && response.response) {
+        console.log({ response: response.level === 2 });
+        if (response.level === 1) setTreeLevelForm("ProjectLevel");
+        if (response.level === 2) setTreeLevelForm("TestSuiteLevel");
+        if (response.level > 2) setTreeLevelForm("TestCaseLevel");
+        console.log({ treeLevelForm });
+        // if (response.children) {
+        //   response.children.push({
+        //     title: `LabView_RVC_DEMO_${uuidv4()}`,
+        //     key: uuidv4(),
+        //     shortName: uuidv4(),
+        //   });
+        // } else {
+        //   response.children = [];
+        //   response.children.push({
+        //     title: `LabView_RVC_DEMO_${uuidv4()}`,
+        //     key: uuidv4(),
+        //     shortName: uuidv4(),
+        //   });
+        // }
+        // return { ...response, ...element };
+      }
+      // else {
+      //   return element;
+      // }
+    });
+    //setTreeData(udatedTree);
+  };
+
+  const handleCreateTestCase = () => {};
+  const handleModalClose = () => {
+    setModalOpen(false);
   };
 
   return (
     <div>
-      {
-        isOPen && 
+      {isOPen && treeLevelForm === "TestSuiteLevel" && (
         <Menu>
-        <Menu.Item key="1">1st menu item</Menu.Item>
-        <Menu.Item key="2">2nd menu item</Menu.Item>
-        <Menu.Item key="3">3rd menu item</Menu.Item>
-      </Menu>
-      }
+          <Menu.Item key="1" onClick={() => setModalOpen(true)}>
+            Create Test case
+          </Menu.Item>
+          <Menu.Item key="2">2nd menu item</Menu.Item>
+          <Menu.Item key="3">3rd menu item</Menu.Item>
+        </Menu>
+      )}
+      {isModalOpen && (
+        <Modal
+          isOpen={isModalOpen}
+          title="Create Test Case"
+          setOpen={handleModalClose}
+          handleSubmit={handleCreateTestCase}
+        >
+          <TestCaseForm onSubmit={handleCreateTestCase} />
+        </Modal>
+      )}
       <Tree
         showLine={true}
         defaultExpandedKeys={[treeData[0].key]}
