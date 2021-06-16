@@ -94,3 +94,24 @@ body, .ant-layout-footer {
   height: 30px !important;
   line-height: 30px !important;
 }
+.textArea1 {
+  resize: none;
+}
+.btn-actions {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: end;
+}
+.form-section {
+  margin-bottom: 10px;
+}
+.required {
+  color: red;
+}
+.ant-modal-body {
+  background: #edf0f1;
+}
+label {
+  font-weight: 600;
+}

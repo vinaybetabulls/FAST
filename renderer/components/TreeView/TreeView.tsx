@@ -9,7 +9,10 @@ import {
   FolderOpenFilled,
   FolderAddOutlined,
   SelectOutlined,
+  CopyOutlined,
   SyncOutlined,
+  ImportOutlined,
+  DeleteOutlined,
   CloseCircleOutlined,
 } from "@ant-design/icons";
 import TestSuiteMenu from "../MenuCard/TestSuiteMenu";
@@ -196,10 +199,34 @@ const TreeView = () => {
           style={{ position: "absolute", top: top, left: left, zIndex: 999 }}
         >
           <Menu.Item key="1" onClick={() => setModalOpen(true)}>
-            Create Test case
+            <ProfileOutlined style={{ color: "#1890ff", fontSize: "18px" }} />
+            <span className="menu-text">View More Details</span>
           </Menu.Item>
-          <Menu.Item key="2">2nd menu item</Menu.Item>
-          <Menu.Item key="3">3rd menu item</Menu.Item>
+          <Menu.Item key="2" onClick={() => setModalOpen(true)}>
+          <FolderAddOutlined style={{ color: "green", fontSize: "18px" }} />
+            <span className="menu-text">Create Test case</span>
+          </Menu.Item>
+          <Menu.Item key="3" onClick={() => setModalOpen(true)}>
+          <ImportOutlined style={{ color: "#3C8DAD", fontSize: "18px" }} />
+          <span className="menu-text">Import Test case</span>
+          </Menu.Item>
+          <Menu.Item key="4" onClick={() => setModalOpen(true)}>
+          <CopyOutlined style={{ color: 'rgb(20 134 201)', fontSize: "18px" }} rotate={180} />
+          <span className="menu-text">Copy Test Suite Ctrl + C</span>
+          </Menu.Item>
+          <Menu.Item key="5" onClick={() => setModalOpen(true)}>
+          <ImportOutlined style={{ color: "#F5A962", fontSize: "18px" }} rotate={180} />
+          <span className="menu-text">Export Test case</span>
+          </Menu.Item>
+          <Menu.Item key="6" onClick={() => setModalOpen(true)}>
+          <DeleteOutlined style={{ color: "#999", fontSize: "18px" }} />
+          <span className="menu-text">Delete Del</span>
+          </Menu.Item>
+          <Menu.Item key="7" onClick={() => setModalOpen(true)}>
+          <CloseCircleOutlined style={{ color: "#De4f60", fontSize: "18px" }} />
+          <span className="menu-text">Close</span>
+          </Menu.Item>
+          
         </Menu>
       )}
       {isModalOpen && (

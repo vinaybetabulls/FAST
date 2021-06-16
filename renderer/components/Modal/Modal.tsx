@@ -13,7 +13,7 @@ const Modal = (props: Props) => {
   const { title, isOpen, handleSubmit, setOpen, children } = props;
   return (
     <AntdModal
-      title="Modal"
+      title="Create Test Case"
       visible={isOpen}
       onOk={handleSubmit}
       onCancel={setOpen}

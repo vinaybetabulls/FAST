@@ -4,6 +4,7 @@ import {
   ProfileOutlined,
   FolderOpenFilled,
   FolderAddOutlined,
+  ImportOutlined,
   SelectOutlined,
   SyncOutlined,
   CloseCircleOutlined,
@@ -22,7 +23,7 @@ const TestSuiteMenu = (props: Props) => {
         <span className="menu-text">View More Details</span>
       </Menu.Item>
       <Menu.Item key="2">
-        <FolderAddOutlined style={{ color: "green", fontSize: "18px" }} />{" "}
+        <FolderAddOutlined style={{ color: "green", fontSize: "18px" }} />
         <span className="menu-text">Create Test Suite</span>
       </Menu.Item>
       <Menu.Item key="3">
@@ -30,7 +31,7 @@ const TestSuiteMenu = (props: Props) => {
         <span className="menu-text">Open Test Suite</span>
       </Menu.Item>
       <Menu.Item key="4">
-        <SelectOutlined style={{ color: "#3C8DAD", fontSize: "18px" }} />
+      <ImportOutlined style={{ color: "#3C8DAD", fontSize: "18px" }} />
         <span className="menu-text">Import Test Suite</span>
       </Menu.Item>
       <Menu.Item key="5">
