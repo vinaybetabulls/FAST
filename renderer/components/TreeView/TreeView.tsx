@@ -1,30 +1,61 @@
-import React, { useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { Menu, Tree } from "antd";
 import { treeMockData } from "../../common/data/treeData";
 import responsiveObserve from "antd/lib/_util/responsiveObserve";
 import Modal from "../Modal/Modal";
 import TestCaseForm from "../TestCase/CreateTestCase/CreateTestCase";
-const menu = (
-  <Menu>
-    <Menu.Item key="1">1st menu item</Menu.Item>
-    <Menu.Item key="2">2nd menu item</Menu.Item>
-    <Menu.Item key="3">3rd menu item</Menu.Item>
-  </Menu>
-);
+import {
+  ProfileOutlined,
+  FolderOpenFilled,
+  FolderAddOutlined,
+  SelectOutlined,
+  SyncOutlined,
+  CloseCircleOutlined,
+} from "@ant-design/icons";
+import TestSuiteMenu from "../MenuCard/TestSuiteMenu";
 
+function useOnClickOutside(ref, handler) {
+  useEffect(
+    () => {
+      const listener = (event) => {
+        // Do nothing if clicking ref's element or descendent elements
+        if (!ref.current || ref.current.contains(event.target)) {
+          return;
+        }
+        handler(event);
+      };
+      document.addEventListener("mousedown", listener);
+      document.addEventListener("touchstart", listener);
+      return () => {
+        document.removeEventListener("mousedown", listener);
+        document.removeEventListener("touchstart", listener);
+      };
+    },
+    // Add ref and handler to effect dependencies
+    // It's worth noting that because passed in handler is a new ...
+    // ... function on every render that will cause this effect ...
+    // ... callback/cleanup to run every render. It's not a big deal ...
+    // ... but to optimize you can wrap handler in useCallback before ...
+    // ... passing it into this hook.
+    [ref, handler]
+  );
+}
 const TreeView = () => {
   const [treeData, setTreeData] = useState(treeMockData);
   const [isOPen, setOpen] = useState(false);
   const [isModalOpen, setModalOpen] = useState(false);
   const [treeLevelForm, setTreeLevelForm] = useState("");
-  let level = 0;
+  const ref = useRef();
+  useOnClickOutside(ref, () => setOpen(false));
 
+  let level = 0;
+  const [top, setTop] = useState(0);
+  const [left, setLeft] = useState(0);
   const onSelect = (selectedKeys, info) => {
     console.log("selected", selectedKeys, info);
   };
 
   const onDrop = (info) => {
-    console.log(info);
     const dropKey = info.node.key;
     const dragKey = info.dragNode.key;
     const dropPos = info.node.pos.split("-");
@@ -93,7 +124,7 @@ const TreeView = () => {
   function getObject(treeObject, matchElement) {
     if (treeObject.shortName == matchElement) {
       level = level + 1;
-      return { treeObject, level };
+      return { response: treeObject, level };
     } else {
       for (let i = 0; i < treeObject?.children?.length; i++) {
         level = level + 1;
@@ -116,18 +147,19 @@ const TreeView = () => {
   }
   // TODO - as of now just adding a new tree when user right click on tree element
   const onRightClick = (event) => {
-    console.log({ event });
     let response;
     setOpen(true);
-    level = 0;
+    setOpen(true);
+    setLeft(event.event.pageX);
+    setTop(event.event.pageY - 50);
     treeData.map((element) => {
+      level = 0;
       response = getObject(element, event.node.shortName);
       if (response && response.response) {
-        console.log({ response: response.level === 2 });
+        console.log({response})
         if (response.level === 1) setTreeLevelForm("ProjectLevel");
         if (response.level === 2) setTreeLevelForm("TestSuiteLevel");
         if (response.level > 2) setTreeLevelForm("TestCaseLevel");
-        console.log({ treeLevelForm });
         // if (response.children) {
         //   response.children.push({
         //     title: `LabView_RVC_DEMO_${uuidv4()}`,
@@ -154,12 +186,15 @@ const TreeView = () => {
   const handleCreateTestCase = () => {};
   const handleModalClose = () => {
     setModalOpen(false);
+    setOpen(false);
   };
 
   return (
     <div>
       {isOPen && treeLevelForm === "TestSuiteLevel" && (
-        <Menu>
+        <Menu
+          style={{ position: "absolute", top: top, left: left, zIndex: 999 }}
+        >
           <Menu.Item key="1" onClick={() => setModalOpen(true)}>
             Create Test case
           </Menu.Item>
@@ -176,6 +211,11 @@ const TreeView = () => {
         >
           <TestCaseForm onSubmit={handleCreateTestCase} />
         </Modal>
+      )}
+      {isOPen && treeLevelForm === "ProjectLevel" && (
+        <div ref={ref}>
+          <TestSuiteMenu top={top} left={left} />
+        </div>
       )}
       <Tree
         showLine={true}
