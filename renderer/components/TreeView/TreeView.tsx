@@ -1,20 +1,20 @@
 import React, { useState } from "react";
 import { Menu, Tree } from "antd";
 import { treeMockData } from "../../common/data/treeData";
-import responsiveObserve from "antd/lib/_util/responsiveObserve";
-
-const menu = (
-  <Menu>
-    <Menu.Item key="1">1st menu item</Menu.Item>
-    <Menu.Item key="2">2nd menu item</Menu.Item>
-    <Menu.Item key="3">3rd menu item</Menu.Item>
-  </Menu>
-);
+import {
+  ProfileOutlined,
+  FolderOpenFilled,
+  FolderAddOutlined,
+  SelectOutlined,
+  SyncOutlined,
+  CloseCircleOutlined,
+} from "@ant-design/icons";
 
 const TreeView = () => {
   const [treeData, setTreeData] = useState(treeMockData);
   const [isOPen, setOpen] = useState(false)
-
+  const [top, setTop]   = useState(0)
+  const [left, setLeft] = useState(0)
   const onSelect = (selectedKeys, info) => {
     console.log("selected", selectedKeys, info);
   };
@@ -110,7 +110,10 @@ const TreeView = () => {
   // TODO - as of now just adding a new tree when user right click on tree element
   const onRightClick = (event) => {
     let response;
+    console.log("top", "caluclated Top",event.event.pageY, event.event.pageY -50)
     setOpen(true)
+    setLeft(event.event.pageX)
+    setTop(event.event.pageY - 50)
     
     // const udatedTree = treeData.map((element) => {
     //   response = getObject(element, event.node.shortName);
@@ -141,10 +144,13 @@ const TreeView = () => {
     <div>
       {
         isOPen && 
-        <Menu>
-        <Menu.Item key="1">1st menu item</Menu.Item>
-        <Menu.Item key="2">2nd menu item</Menu.Item>
-        <Menu.Item key="3">3rd menu item</Menu.Item>
+        <Menu style={{position: 'absolute', top: top, left: left, zIndex: 999}}>
+        <Menu.Item key="1"><ProfileOutlined style={{ color: "#1890ff", fontSize: "18px" }} /><span className="menu-text">View More Details</span></Menu.Item>
+        <Menu.Item key="2"><FolderAddOutlined style={{ color: "green", fontSize: "18px" }} /> <span className="menu-text">Create Test Suite</span></Menu.Item>
+        <Menu.Item key="3"><FolderOpenFilled style={{ color: "#FAC218", fontSize: "18px" }} /><span className="menu-text">Open Test Suite</span></Menu.Item>
+        <Menu.Item key="4"><SelectOutlined style={{ color: "#3C8DAD", fontSize: "18px" }} /><span className="menu-text">Import Test Suite</span></Menu.Item>
+        <Menu.Item key="5"><SyncOutlined style={{ color: "#F5A962", fontSize: "18px" }}/><span className="menu-text">Recover Test Suite</span></Menu.Item>
+        <Menu.Item key="6"><CloseCircleOutlined style={{ color: "#De4f60", fontSize: "18px" }}/><span className="menu-text">Close Project</span></Menu.Item>
       </Menu>
       }
       <Tree
