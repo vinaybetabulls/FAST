@@ -5,19 +5,13 @@ type Props = {
   title: string;
   isOpen: boolean;
   setOpen: () => void;
-  handleSubmit: () => void;
-  children: React.ReactNode
+  children: React.ReactNode;
 };
 
 const Modal = (props: Props) => {
-  const { title, isOpen, handleSubmit, setOpen, children } = props;
+  const { title, isOpen, setOpen, children } = props;
   return (
-    <AntdModal
-      title="Create Test Case"
-      visible={isOpen}
-      onOk={handleSubmit}
-      onCancel={setOpen}
-    >
+    <AntdModal title={title} visible={isOpen} footer={null} destroyOnClose={true} onCancel={setOpen}>
       {children}
     </AntdModal>
   );

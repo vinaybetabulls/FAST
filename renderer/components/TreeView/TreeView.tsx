@@ -4,18 +4,10 @@ import { treeMockData } from "../../common/data/treeData";
 import responsiveObserve from "antd/lib/_util/responsiveObserve";
 import Modal from "../Modal/Modal";
 import TestCaseForm from "../TestCase/CreateTestCase/CreateTestCase";
-import {
-  ProfileOutlined,
-  FolderOpenFilled,
-  FolderAddOutlined,
-  SelectOutlined,
-  CopyOutlined,
-  SyncOutlined,
-  ImportOutlined,
-  DeleteOutlined,
-  CloseCircleOutlined,
-} from "@ant-design/icons";
-import TestSuiteMenu from "../MenuCard/TestSuiteMenu";
+
+import ProjectLevelMenu from "../MenuCard/ProjectLevelMenu";
+import TestSuiteLevelMeu from "../MenuCard/TestSuiteLevelMeu";
+import TestCaseLevelMenu from "../MenuCard/TestCaseLevelMenu";
 
 function useOnClickOutside(ref, handler) {
   useEffect(
@@ -48,6 +40,8 @@ const TreeView = () => {
   const [isOPen, setOpen] = useState(false);
   const [isModalOpen, setModalOpen] = useState(false);
   const [treeLevelForm, setTreeLevelForm] = useState("");
+  const [isTestCaseModal, setTestCaseModal] = useState(false);
+  const [selectedShortName, setSelectedShortName] = useState();
   const ref = useRef();
   useOnClickOutside(ref, () => setOpen(false));
 
@@ -121,7 +115,6 @@ const TreeView = () => {
   };
 
   const createTestSuite = () => {};
-  const createTestCase = () => {};
 
   // get the object of selected element
   function getObject(treeObject, matchElement) {
@@ -130,8 +123,8 @@ const TreeView = () => {
       return { response: treeObject, level };
     } else {
       for (let i = 0; i < treeObject?.children?.length; i++) {
-        level = level + 1;
         let response = getObject(treeObject.children[i], matchElement);
+        level = level + 1;
         if (response) return { response, level };
       }
     }
@@ -148,20 +141,55 @@ const TreeView = () => {
       return v.toString(16);
     });
   }
-  // TODO - as of now just adding a new tree when user right click on tree element
+
+  const handleCreateTestCase = (values: any) => {
+    console.log({ values });
+    let response;
+    const updatedTree = treeData.map((element) => {
+      level = 0;
+      response = getObject(element, selectedShortName);
+      if (response && response.response) {
+        console.log(response.response);
+        if (response.response.response.children) {
+          response.response.response.children.push({
+            title: `${values.description}_${uuidv4()}`,
+            key: uuidv4(),
+            shortName: `${values.description}_${uuidv4()}`,
+          });
+        } else {
+          response.response.response.children = [];
+          response.response.response.children.push({
+            title: `${values.description}_${uuidv4()}`,
+            key: uuidv4(),
+            shortName: `${values.description}_${uuidv4()}`,
+          });
+        }
+        return { ...response, ...element };
+      } else {
+        return element;
+      }
+    });
+    setTreeData(updatedTree);
+    handleModalClose()
+    return;
+  };
+
   const onRightClick = (event) => {
     let response;
     setOpen(true);
     setOpen(true);
     setLeft(event.event.pageX);
     setTop(event.event.pageY - 50);
+    setSelectedShortName(event.node.shortName);
     treeData.map((element) => {
       level = 0;
       response = getObject(element, event.node.shortName);
       if (response && response.response) {
-        console.log({response})
         if (response.level === 1) setTreeLevelForm("ProjectLevel");
-        if (response.level === 2) setTreeLevelForm("TestSuiteLevel");
+        if (response.level === 2) {
+          setTreeLevelForm("TestSuiteLevel");
+          setTestCaseModal(true);
+        }
         if (response.level > 2) setTreeLevelForm("TestCaseLevel");
         // if (response.children) {
         //   response.children.push({
@@ -186,63 +214,59 @@ const TreeView = () => {
     //setTreeData(udatedTree);
   };
 
-  const handleCreateTestCase = () => {};
   const handleModalClose = () => {
     setModalOpen(false);
     setOpen(false);
+    setTestCaseModal(false);
+  };
+
+  const handleTestSuiteModal = () => {
+    setModalOpen(true);
+  };
+
+  const handleTestCaseModal = () => {
+    setModalOpen(true);
+    setTestCaseModal(true);
   };
 
   return (
     <div>
+      {isOPen && treeLevelForm === "ProjectLevel" && (
+        <div ref={ref}>
+          <ProjectLevelMenu
+            top={top}
+            left={left}
+            handleTestSuiteModal={handleTestSuiteModal}
+          />
+        </div>
+      )}
       {isOPen && treeLevelForm === "TestSuiteLevel" && (
-        <Menu
-          style={{ position: "absolute", top: top, left: left, zIndex: 999 }}
-        >
-          <Menu.Item key="1" onClick={() => setModalOpen(true)}>
-            <ProfileOutlined style={{ color: "#1890ff", fontSize: "18px" }} />
-            <span className="menu-text">View More Details</span>
-          </Menu.Item>
-          <Menu.Item key="2" onClick={() => setModalOpen(true)}>
-          <FolderAddOutlined style={{ color: "green", fontSize: "18px" }} />
-            <span className="menu-text">Create Test case</span>
-          </Menu.Item>
-          <Menu.Item key="3" onClick={() => setModalOpen(true)}>
-          <ImportOutlined style={{ color: "#3C8DAD", fontSize: "18px" }} />
-          <span className="menu-text">Import Test case</span>
-          </Menu.Item>
-          <Menu.Item key="4" onClick={() => setModalOpen(true)}>
-          <CopyOutlined style={{ color: 'rgb(20 134 201)', fontSize: "18px" }} rotate={180} />
-          <span className="menu-text">Copy Test Suite Ctrl + C</span>
-          </Menu.Item>
-          <Menu.Item key="5" onClick={() => setModalOpen(true)}>
-          <ImportOutlined style={{ color: "#F5A962", fontSize: "18px" }} rotate={180} />
-          <span className="menu-text">Export Test case</span>
-          </Menu.Item>
-          <Menu.Item key="6" onClick={() => setModalOpen(true)}>
-          <DeleteOutlined style={{ color: "#999", fontSize: "18px" }} />
-          <span className="menu-text">Delete Del</span>
-          </Menu.Item>
-          <Menu.Item key="7" onClick={() => setModalOpen(true)}>
-          <CloseCircleOutlined style={{ color: "#De4f60", fontSize: "18px" }} />
-          <span className="menu-text">Close</span>
-          </Menu.Item>
-          
-        </Menu>
+        <div ref={ref}>
+          <TestSuiteLevelMeu
+            top={top}
+            left={left}
+            handleTestCaseModal={handleTestCaseModal}
+          />
+        </div>
+      )}
+      {isOPen && treeLevelForm === "TestCaseLevel" && (
+        <div ref={ref}>
+          <TestCaseLevelMenu top={top} left={left} />
+        </div>
       )}
       {isModalOpen && (
         <Modal
           isOpen={isModalOpen}
-          title="Create Test Case"
+          title={isTestCaseModal ? "Create Test Case" : "Create Test Suite"}
           setOpen={handleModalClose}
-          handleSubmit={handleCreateTestCase}
         >
-          <TestCaseForm onSubmit={handleCreateTestCase} />
+          {isTestCaseModal && (
+            <TestCaseForm
+              onSubmit={handleCreateTestCase}
+              setOpen={handleModalClose}
+            />
+          )}
         </Modal>
-      )}
-      {isOPen && treeLevelForm === "ProjectLevel" && (
-        <div ref={ref}>
-          <TestSuiteMenu top={top} left={left} />
-        </div>
       )}
       <Tree
         showLine={true}

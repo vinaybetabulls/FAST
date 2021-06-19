@@ -13,9 +13,10 @@ import {
 type Props = {
   top: number;
   left: number;
+  handleTestSuiteModal: () => void
 };
 const TestSuiteMenu = (props: Props) => {
-  const { top, left } = props;
+  const { top, left, handleTestSuiteModal } = props;
   return (
     <Menu style={{ position: "absolute", top: top, left: left, zIndex: 999 }}>
       <Menu.Item key="1">
@@ -24,7 +25,7 @@ const TestSuiteMenu = (props: Props) => {
       </Menu.Item>
       <Menu.Item key="2">
         <FolderAddOutlined style={{ color: "green", fontSize: "18px" }} />
-        <span className="menu-text">Create Test Suite</span>
+        <span className="menu-text" onClick={handleTestSuiteModal}>Create Test Suite</span>
       </Menu.Item>
       <Menu.Item key="3">
         <FolderOpenFilled style={{ color: "#FAC218", fontSize: "18px" }} />
