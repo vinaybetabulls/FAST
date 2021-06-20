@@ -20,7 +20,7 @@ const MiteBodyContainer = () => {
     return (
         <div className="miteBodyConainer">
             <div className="mite-nav-title">
-                <h3>MITE Project</h3>
+                <h3>FAST Project</h3>
             </div>
             <div className="mite-detail-view">
                 <div className="summary-view">
