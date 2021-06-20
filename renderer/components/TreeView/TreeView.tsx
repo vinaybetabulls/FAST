@@ -170,7 +170,7 @@ const TreeView = () => {
       }
     });
     setTreeData(updatedTree);
-    handleModalClose()
+    handleModalClose();
     return;
   };
 
@@ -190,7 +190,10 @@ const TreeView = () => {
           setTreeLevelForm("TestSuiteLevel");
           setTestCaseModal(true);
         }
-        if (response.level > 2) setTreeLevelForm("TestCaseLevel");
+        if (response.level > 2) {
+          setTreeLevelForm("TestCaseLevel");
+          setTestCaseModal(true);
+        }
         // if (response.children) {
         //   response.children.push({
         //     title: `LabView_RVC_DEMO_${uuidv4()}`,
@@ -251,7 +254,11 @@ const TreeView = () => {
       )}
       {isOPen && treeLevelForm === "TestCaseLevel" && (
         <div ref={ref}>
-          <TestCaseLevelMenu top={top} left={left} />
+          <TestCaseLevelMenu
+            top={top}
+            left={left}
+            handleTestCaseModal={handleTestCaseModal}
+          />
         </div>
       )}
       {isModalOpen && (
