@@ -4,7 +4,7 @@ import {
   ProfileOutlined,
   CopyOutlined,
   FolderAddOutlined,
-  ImportOutlined,
+  SnippetsOutlined,
   DeleteOutlined,
   ReloadOutlined,
   DownCircleOutlined,
@@ -32,6 +32,10 @@ const TestCaseLevelMenu = (props: Props) => {
       <Menu.Item key="3">
         <CopyOutlined style={{ color: "rgb(20 134 201)", fontSize: "18px" }} />
         <span className="menu-text">Copy Test case Ctrl+C</span>
+      </Menu.Item>
+      <Menu.Item key="3" disabled>
+        <SnippetsOutlined  style={{ color: "rgb(20 134 201)", fontSize: "18px" }}/>
+        <span className="menu-text">Paste Test case Ctrl+V</span>
       </Menu.Item>
       <Menu.Item key="4">
         <ExportOutlined style={{ color: "#F5A962", fontSize: "18px" }} />
