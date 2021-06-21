@@ -1,11 +1,21 @@
 # FAST
 
+
+## Installation
+
+install node v14.16.0 (Use following link: https://nodejs.org/en/download/ open that link click on windows installer icon)
+
+For installing yarn open a command prompt and run the below command
+"npm install -g yarn@1.22.10"
 ## Getting Started
 
-First, run the development server:
 
 ```bash
+In root directory open a command prompt and run the below command
 yarn install
+
+
+To run the development server:
 yarn dev
 ```
 
