@@ -7,13 +7,14 @@ type Props = {
     data: any
     displayPagination: false
     className?: string 
+    bordered?: boolean
 }
 
 const Table = (props: Props) => {
-    const {data, columns, displayPagination, className} = props
+    const {data, columns, displayPagination, className, bordered=false} = props
     return (
         <div>
-            <AntdTable columns={columns} dataSource={data} pagination={displayPagination} className={className}/>
+            <AntdTable columns={columns} dataSource={data} pagination={displayPagination} className={className} bordered={bordered}/>
         </div>
     )
 }
