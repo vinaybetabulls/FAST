@@ -5,7 +5,7 @@ module.exports = withCss({
     config.target = 'electron-renderer';
 
     if (isServer) {
-      const antStyles = /antd\/.*?\/style\/css.*?/;
+      const antStyles = /antd\/.*?\/style\/css.*?\.svg$/;
       const origExternals = [...config.externals];
       config.externals = [
         (context, request, callback) => {
