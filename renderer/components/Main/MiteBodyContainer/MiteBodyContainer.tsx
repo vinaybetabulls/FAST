@@ -27,7 +27,7 @@ const MiteBodyContainer = () => {
             </div>
             <div className="mite-detail-view">
                 <div className="summary-view">
-                    <Tabs type="card">
+                    <Tabs type="card" tabPosition= "bottom">
                         <TabPane tab={
                             <span> <ProfileOutlined />Content</span>
                         }
