@@ -10,6 +10,7 @@
 .mite-detail-view, .details-section {
     display: flex;
     flex-direction: column;
+    margin: 24px 0;
 }
 .summary-view {
     height: 185px;
@@ -66,4 +67,36 @@
     display: flex;
     align-items: center;
     padding-top: 0;
+    padding-left: 0;
+}
+.view-more-container {
+    padding: 0 16px;
+    margin-bottom: 24px;
+}
+.project-detail-list {
+    display: table;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+.project-detail-list li {
+    margin-bottom: 10px;
+    list-style-type: none;
+    display: flex;
+}
+.fast-label {
+    color: #000;
+    display: block;
+    width: 15%;
+    font-weight: bold;
+}
+.fast-value {
+    color: #212121;
+    width: 55%;
+}
+.btn-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    width: 70%;
 }

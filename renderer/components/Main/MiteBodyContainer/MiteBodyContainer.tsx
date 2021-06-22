@@ -1,11 +1,13 @@
 import React from 'react'
 import './MiteBodyContainer.styles.css'
-import { Empty, Input } from 'antd';
+import { Empty, Input, Button } from 'antd';
 import { Tabs } from 'antd';
+
+const { TextArea } = Input;
 const TabPane = Tabs.TabPane;
-import { 
-    ProfileOutlined, 
-    FileDoneOutlined, 
+import {
+    ProfileOutlined,
+    FileDoneOutlined,
     FormOutlined,
     SlidersTwoTone,
     TagFilled,
@@ -13,7 +15,7 @@ import {
     MessageFilled,
     BarChartOutlined,
 
-} 
+}
     from "@ant-design/icons";
 
 const MiteBodyContainer = () => {
@@ -26,71 +28,38 @@ const MiteBodyContainer = () => {
                 <div className="summary-view">
                     <Tabs type="card">
                         <TabPane tab={
-                            <span> <ProfileOutlined />Overview</span>
+                            <span> <ProfileOutlined />Content</span>
                         }
                             key="1">
-                            <div className="summary-contents">
-                                <div className="left-summary">
-                                    <ul className="attributes-list">
-                                        <li>
-                                            <span className="key-name">Code: </span>
-                                            <span className="value-name">78HGT56FG4023U</span>
-                                        </li>
-                                        <li>
-                                            <span className="key-name">Created by: </span>
-                                            <span className="value-name">Vinay Bodige</span>
-                                        </li>
-                                        <li>
-                                            <span className="key-name">Name: </span>
-                                            <span className="value-name">Demo Project</span>
-                                        </li>
-                                        <li>
-                                            <span className="key-name">Modified by: </span>
-                                            <span className="value-name"></span>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div className="right-summary">
-                                    <h1>Project</h1>
-                                </div>
-                            </div>
-                        </TabPane>
-                        <TabPane
-                            tab={
-                                <span>
-                                    <FileDoneOutlined />
-                                    Summary
-                                </span>
-                            }
-                            key="2">
-                            Summary
-                        </TabPane>
-                    </Tabs>
-                </div>
-                <div className="contents-view">
-                    <div className="details-section">
-                        <div className="search-container">
-                            <span className="key-name" style={{color: '#000'}}>
-                                Search here:
+                            
+                            {/* <div className="contents-view">
+                                <div className="details-section">
+                                    <div className="search-container">
+                                        <span className="key-name" style={{ color: '#000' }}>
+                                            Search here:
                             </span>&nbsp;&nbsp;&nbsp;
                             <span>
-                            <Input placeholder="" />
-                            </span>
-                        </div>
-                        <div className="details-tab-view">
+                                            <Input placeholder="" />
+                                        </span>
+                                    </div>
+                                    <div className="details-tab-view">
+
+                                    </div>
+                                </div>
+                            </div> */}
                             <Tabs type="card">
                                 <TabPane tab={
-                                    <span> <FormOutlined style={{fontSize: '16px'}} />Content</span>
+                                    <span> <FormOutlined style={{ fontSize: '16px' }} />Summary</span>
                                 }
                                     key="1">
-                                    <div className="summary-contents" style={{height: "300px"}}>
+                                    <div className="summary-contents" style={{ height: "300px" }}>
                                         <Empty />
                                     </div>
                                 </TabPane>
                                 <TabPane
                                     tab={
                                         <span>
-                                            <SlidersTwoTone style={{fontSize: '16px'}}/>
+                                            <SlidersTwoTone style={{ fontSize: '16px' }} />
                                             Parameters
                                         </span>
                                     }
@@ -100,7 +69,7 @@ const MiteBodyContainer = () => {
                                 <TabPane
                                     tab={
                                         <span>
-                                            <TagFilled rotate={180} style={{color: "#FDCA40", fontSize: '16px'}}  />
+                                            <TagFilled rotate={180} style={{ color: "#FDCA40", fontSize: '16px' }} />
                                             Labels
                                         </span>
                                     }
@@ -120,7 +89,7 @@ const MiteBodyContainer = () => {
                                 <TabPane
                                     tab={
                                         <span>
-                                            <MessageFilled style={{color: "#5B8A72", fontSize: '16px'}} />
+                                            <MessageFilled style={{ color: "#5B8A72", fontSize: '16px' }} />
                                             Messages
                                         </span>
                                     }
@@ -130,7 +99,7 @@ const MiteBodyContainer = () => {
                                 <TabPane
                                     tab={
                                         <span>
-                                            <BarChartOutlined style={{color: "#7868E6", fontSize: '16px'}}/>
+                                            <BarChartOutlined style={{ color: "#7868E6", fontSize: '16px' }} />
                                             Statistics
                                         </span>
                                     }
@@ -138,8 +107,78 @@ const MiteBodyContainer = () => {
                                     Statistics
                                 </TabPane>
                             </Tabs>
-                        </div>
-                    </div>
+                        </TabPane>
+                        <TabPane
+                            tab={
+                                <span>
+                                    <FileDoneOutlined />
+                                    View More Details
+                                </span>
+                            }
+                            key="2">
+                            <div className="view-more-container">
+                                <ul className="project-detail-list">
+                                    <li>
+                                        <span className="fast-label">Project ID:&nbsp;</span>
+                                        <span className="fast-value">12345</span>
+                                    </li>
+                                    <li>
+                                        <span className="fast-label">Created By:&nbsp;</span>
+                                        <span className="fast-value">Morampudi-PC</span>
+                                    </li>
+                                    <li>
+                                        <span className="fast-label">Modified By:&nbsp;</span>
+                                        <span className="fast-value">Morampudi-PC</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <Tabs type="card">
+                                <TabPane tab={
+                                    <span> <FormOutlined style={{ fontSize: '16px' }} />Overview</span>
+                                }
+                                    key="1">
+                                    <ul className="project-detail-list">
+                                    <li>
+                                        <span className="fast-label">State:&nbsp;</span>
+                                        <span className="fast-value">12345</span>
+                                    </li>
+                                    <li>
+                                        <span className="fast-label">Project:&nbsp;</span>
+                                        <span className="fast-value">Demo Project</span>
+                                    </li>
+                                    <li>
+                                        <span className="fast-label">Project Status:&nbsp;</span>
+                                        <span className="fast-value">Active</span>
+                                    </li>
+                                    <li>
+                                        <span className="fast-label">Project Short Name:&nbsp;</span>
+                                        <span className="fast-value">DemoProject</span>
+                                    </li>
+                                    <li>
+                                        <span className="fast-label">Description:&nbsp;</span>
+                                        <span className="fast-value">
+                                        <TextArea rows={4} style={{resize: 'none'}} />
+                                        </span>
+                                    </li>
+                                </ul>
+                                <div className="btn-container">
+                                <Button type="primary">Save</Button>
+                                </div>
+                                </TabPane>
+                                <TabPane
+                                    tab={
+                                        <span>
+                                            <SlidersTwoTone style={{ fontSize: '16px' }} />
+                                            Parameters
+                                        </span>
+                                    }
+                                    key="2">
+                                    Parameters
+                                </TabPane>
+                            </Tabs>
+
+                        </TabPane>
+                    </Tabs>
                 </div>
             </div>
             {/* <div className="align-center">
