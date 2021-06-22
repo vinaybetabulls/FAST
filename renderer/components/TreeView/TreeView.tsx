@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import { Menu, Tree } from "antd";
-import { treeMockData } from "../../common/data/treeData";
+import { treeMocTreekData } from "../../common/data/treeData";
 import responsiveObserve from "antd/lib/_util/responsiveObserve";
 import Modal from "../Modal/Modal";
 import TestCaseForm from "../TestCase/CreateTestCase/CreateTestCase";
@@ -36,7 +36,7 @@ function useOnClickOutside(ref, handler) {
   );
 }
 const TreeView = () => {
-  const [treeData, setTreeData] = useState(treeMockData);
+  const [treeData, setTreeData] = useState(treeMocTreekData);
   const [isOPen, setOpen] = useState(false);
   const [isModalOpen, setModalOpen] = useState(false);
   const [treeLevelForm, setTreeLevelForm] = useState("");

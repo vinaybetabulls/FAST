@@ -1,4 +1,4 @@
-export const treeMockData = [
+export const treeMocTreekData = [
   {
     title: "DemoProject",
     key: "project1",

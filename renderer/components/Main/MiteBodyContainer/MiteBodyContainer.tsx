@@ -15,6 +15,7 @@ import {
 
 } 
     from "@ant-design/icons";
+import ProjectSummaryTab from '../../ProjectSummaryTab/ProjectSummaryTab';
 
 const MiteBodyContainer = () => {
     return (
@@ -84,7 +85,7 @@ const MiteBodyContainer = () => {
                                 }
                                     key="1">
                                     <div className="summary-contents" style={{height: "300px"}}>
-                                        <Empty />
+                                        <ProjectSummaryTab />
                                     </div>
                                 </TabPane>
                                 <TabPane
