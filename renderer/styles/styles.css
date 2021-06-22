@@ -42,9 +42,9 @@ body, .ant-layout-footer {
   .ant-tabs-nav-list .ant-tabs-card > .ant-tabs-nav .ant-tabs-tab {
       background-color: #edf0f1;
   }
-  .ant-tabs-content-holder {
+  /* .ant-tabs-content-holder {
       padding: 0 14px !important;
-  }
+  } */
   .project-nav-title {
     padding: 6px 14px;
     background-color: #d3e2f0;
@@ -114,4 +114,7 @@ body, .ant-layout-footer {
 }
 label {
   font-weight: 600;
+}
+.ant-table-thead > tr > th {
+  background-color: #edf0f1 !important;
 }

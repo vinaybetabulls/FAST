@@ -53,7 +53,7 @@ const MiteBodyContainer = () => {
                                     <span> <FormOutlined style={{ fontSize: '16px' }} />Summary</span>
                                 }
                                     key="1">
-                                    <div className="summary-contents" style={{height: "300px"}}>
+                                    <div className="summary-contents">
                                         <ProjectSummaryTab />
                                     </div>
                                 </TabPane>
@@ -138,7 +138,7 @@ const MiteBodyContainer = () => {
                                     <span> <FormOutlined style={{ fontSize: '16px' }} />Overview</span>
                                 }
                                     key="1">
-                                    <ul className="project-detail-list">
+                                    <ul className="project-detail-list" style={{padding: '0 16px'}}>
                                     <li>
                                         <span className="fast-label">State:&nbsp;</span>
                                         <span className="fast-value">12345</span>

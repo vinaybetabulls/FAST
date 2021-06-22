@@ -37,8 +37,8 @@ const ProjectSummaryTab = () => {
 
     ]
     return (
-        <div>
-            <Table columns={columns} data={ProjectSummaryTabData} displayPagination={false}/>
+        <div style={{width: '100%'}}>
+            <Table columns={columns} data={ProjectSummaryTabData} displayPagination={false} className="summary-table" />
         </div>
     )
 }

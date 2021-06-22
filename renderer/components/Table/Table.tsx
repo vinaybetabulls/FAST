@@ -5,14 +5,15 @@ import { Table as AntdTable } from 'antd';
 type Props = {
     columns: any
     data: any
-    displayPagination: false 
+    displayPagination: false
+    className?: string 
 }
 
 const Table = (props: Props) => {
-    const {data, columns, displayPagination} = props
+    const {data, columns, displayPagination, className} = props
     return (
         <div>
-            <AntdTable columns={columns} dataSource={data} pagination={displayPagination} />
+            <AntdTable columns={columns} dataSource={data} pagination={displayPagination} className={className}/>
         </div>
     )
 }
