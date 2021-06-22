@@ -18,6 +18,7 @@ import {
 }
     from "@ant-design/icons";
 import ProjectSummaryTab from '../../ProjectSummaryTab/ProjectSummaryTab';
+import ProjectViewMoreTabParameters from '../../ProjectViewMoreTabParameters/ProjectViewMoreTabParameters';
 
 const MiteBodyContainer = () => {
     return (
@@ -174,7 +175,7 @@ const MiteBodyContainer = () => {
                                         </span>
                                     }
                                     key="2">
-                                    Parameters
+                                    <ProjectViewMoreTabParameters />
                                 </TabPane>
                             </Tabs>
 
