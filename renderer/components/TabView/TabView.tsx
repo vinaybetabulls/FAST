@@ -38,7 +38,6 @@ const TabView = () => {
         activeKey = panes[0].key;
       }
     }
-    console.log({ panes });
     setTabsList(panes);
   };
   const onEdit = () => {};
