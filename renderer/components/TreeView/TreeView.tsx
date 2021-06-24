@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, useContext } from "react";
 import { Menu, Tree } from "antd";
 import { treeMocTreekData } from "../../common/data/treeData";
 import responsiveObserve from "antd/lib/_util/responsiveObserve";
@@ -8,6 +8,9 @@ import TestCaseForm from "../TestCase/CreateTestCase/CreateTestCase";
 import ProjectLevelMenu from "../MenuCard/ProjectLevelMenu";
 import TestSuiteLevelMeu from "../MenuCard/TestSuiteLevelMeu";
 import TestCaseLevelMenu from "../MenuCard/TestCaseLevelMenu";
+
+import { AppContext } from "../../Context/MainContext";
+import MiteBodyContainer from "../Main/MiteBodyContainer/MiteBodyContainer";
 
 function useOnClickOutside(ref, handler) {
   useEffect(
@@ -42,15 +45,14 @@ const TreeView = () => {
   const [treeLevelForm, setTreeLevelForm] = useState("");
   const [isTestCaseModal, setTestCaseModal] = useState(false);
   const [selectedShortName, setSelectedShortName] = useState();
+  const { tabsList, setTabsList } = useContext(AppContext);
   const ref = useRef();
   useOnClickOutside(ref, () => setOpen(false));
+  console.log({ tabsList });
 
   let level = 0;
   const [top, setTop] = useState(0);
   const [left, setLeft] = useState(0);
-  const onSelect = (selectedKeys, info) => {
-    console.log("selected", selectedKeys, info);
-  };
 
   const onDrop = (info) => {
     const dropKey = info.node.key;
@@ -172,6 +174,41 @@ const TreeView = () => {
     setTreeData(updatedTree);
     handleModalClose();
     return;
+  };
+
+  const onSelect = (selectedKeys, info) => {
+    console.log("selected", selectedKeys, info);
+    let response;
+    treeData.map((element) => {
+      level = 0;
+      response = getObject(element, info.node.shortName);
+      if (response && response.response && response.level === 1) {
+        if (tabsList.length === 0) {
+          setTabsList([
+            ...tabsList,
+            {
+              title: response.response.title,
+              content: "MiteBodyContainer",
+              key: response.response.shortName,
+            },
+          ]);
+        } else {
+          const checkDuplicate =
+            tabsList.length > 0 &&
+            tabsList.filter((tab) => tab.key === response.response.shortName);
+          if (checkDuplicate?.length == 0) {
+            setTabsList([
+              ...tabsList,
+              {
+                title: response.response.title,
+                content: "MiteBodyContainer",
+                key: response.response.shortName,
+              },
+            ]);
+          }
+        }
+      }
+    });
   };
 
   const onRightClick = (event) => {
