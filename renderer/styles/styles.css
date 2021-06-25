@@ -118,3 +118,24 @@ label {
 .ant-table-thead > tr > th {
   background-color: #edf0f1 !important;
 }
+.fullWidth {
+  width: 100%;
+}
+.alignCenter {
+  height: 650px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.top-tabs > .ant-tabs-nav {
+  background-color: rgb(211, 226, 240);
+}
+.summary-tabs > .ant-tabs-content-holder {
+  min-height: 600px;
+}
+.top-tabs .ant-tabs-tab-btn {
+  max-width: 120px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

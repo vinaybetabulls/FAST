@@ -9,18 +9,18 @@ const SideNav = () => {
     <Resizable
       defaultSize={{
         width: "20%",
-        height: "682px",
+        height: "100%",
       }}
       className="sideNavContianer"
-      maxWidth="35%"
+      maxWidth="20%"
       minWidth="20%"
-      minHeight="682px"
-      maxHeight="682px"
+      // minHeight="682px"
+      // maxHeight="682px"
     >
-      <div>
+      <>
         <ProjectNavigator />
         <Configurations />
-      </div>
+      </>
     </Resizable>
   );
 };

@@ -20,15 +20,15 @@ import {
 import ProjectSummaryTab from '../../ProjectSummaryTab/ProjectSummaryTab';
 import ProjectViewMoreTabParameters from '../../ProjectViewMoreTabParameters/ProjectViewMoreTabParameters';
 
-const MiteBodyContainer = () => {
+const MiteBodyContainer =   () => {
     return (
         <div className="miteBodyConainer">
-            <div className="mite-nav-title">
+            {/* <div className="mite-nav-title">
                 <h3>FAST Project</h3>
-            </div>
+            </div> */}
             <div className="mite-detail-view">
                 <div className="summary-view">
-                    <Tabs type="card" tabPosition= "bottom">
+                    <Tabs type="card" tabPosition= "bottom" className="summary-tabs">
                         <TabPane tab={
                             <span> <ProfileOutlined />Content</span>
                         }

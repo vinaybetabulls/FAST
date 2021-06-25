@@ -4,10 +4,14 @@
   border-right: 10px solid #d7e2e8;
 }
 .project-navigator {
-  min-height: 500px;
+  /* min-height: 500px; */
+  min-height: 400px;
 }
-.configuratios {
-  min-height: 350px;
+.configurations {
+  /* min-height: 350px; */
+  min-height: 311px;
 }
-
+/* .ant-tabs-content-holder {
+  height: 450px !important;
+}  */
 

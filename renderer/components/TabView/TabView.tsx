@@ -42,7 +42,7 @@ const TabView = () => {
   };
   const onEdit = () => {};
   return (
-    <div>
+    <div style={{width: '100%'}}>
       {tabsList.length > 0 ? (
         <Tabs
           hideAdd
@@ -50,6 +50,7 @@ const TabView = () => {
           activeKey={activeKey}
           type="editable-card"
           onEdit={onEdit}
+          className="top-tabs"
         >
           {tabsList.map((pane) => (
             <TabPane
@@ -64,7 +65,9 @@ const TabView = () => {
           ))}
         </Tabs>
       ) : (
-        <Empty />
+        <div className="alignCenter">
+          <Empty />
+        </div>
       )}
     </div>
   );
