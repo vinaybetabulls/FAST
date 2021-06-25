@@ -45,7 +45,8 @@ const IconHeader = () => {
         {/* <UndoOutlined style={{color:"", fontSize: "18px"}} />
       <RedoOutlined style={{color:"", fontSize: "18px"}} /> */}
         <ExportOutlined style={{ color: "#00a8f5", fontSize: "18px" }} />
-        <Image src="/svgs/clean.svg" height="25" width="25"/>
+        {/* <Image src="/svgs/clean.svg" height="25" width="25"/>
+        <Image src="/svgs/delete.svg" height="25" width="25"/> */}
       </div>
       <div className="testCaseOptions">
         <Select
