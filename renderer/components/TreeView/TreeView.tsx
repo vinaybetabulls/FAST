@@ -45,10 +45,9 @@ const TreeView = () => {
   const [treeLevelForm, setTreeLevelForm] = useState("");
   const [isTestCaseModal, setTestCaseModal] = useState(false);
   const [selectedShortName, setSelectedShortName] = useState();
-  const { tabsList, setTabsList } = useContext(AppContext);
+  const { tabsList, setTabsList, setActiveTabKey } = useContext(AppContext);
   const ref = useRef();
   useOnClickOutside(ref, () => setOpen(false));
-  console.log({ tabsList });
 
   let level = 0;
   const [top, setTop] = useState(0);
@@ -122,12 +121,23 @@ const TreeView = () => {
   function getObject(treeObject, matchElement) {
     if (treeObject.shortName == matchElement) {
       level = level + 1;
-      return { response: treeObject, level };
+      return {
+        response: treeObject,
+        level,
+        title: treeObject.title,
+        shortName: treeObject.shortName,
+      };
     } else {
       for (let i = 0; i < treeObject?.children?.length; i++) {
         let response = getObject(treeObject.children[i], matchElement);
         level = level + 1;
-        if (response) return { response, level };
+        if (response)
+          return {
+            ...response,
+            level,
+            title: response.title,
+            shortName: response.shortName,
+          };
       }
     }
   }
@@ -145,22 +155,20 @@ const TreeView = () => {
   }
 
   const handleCreateTestCase = (values: any) => {
-    console.log({ values });
     let response;
     const updatedTree = treeData.map((element) => {
       level = 0;
       response = getObject(element, selectedShortName);
       if (response && response.response) {
-        console.log(response.response);
-        if (response.response.response.children) {
-          response.response.response.children.push({
+        if (response.response.children) {
+          response.response.children.push({
             title: `${values.description}_${uuidv4()}`,
             key: uuidv4(),
             shortName: `${values.description}_${uuidv4()}`,
           });
         } else {
-          response.response.response.children = [];
-          response.response.response.children.push({
+          response.response.children = [];
+          response.response.children.push({
             title: `${values.description}_${uuidv4()}`,
             key: uuidv4(),
             shortName: `${values.description}_${uuidv4()}`,
@@ -182,27 +190,29 @@ const TreeView = () => {
     treeData.map((element) => {
       level = 0;
       response = getObject(element, info.node.shortName);
-      if (response && response.response && response.level === 1) {
+
+      if (response && response.response) {
+        setActiveTabKey(info.node.shortName);
         if (tabsList.length === 0) {
           setTabsList([
             ...tabsList,
             {
-              title: response.response.title,
+              title: response.title,
               content: "MiteBodyContainer",
-              key: response.response.shortName,
+              key: info.node.shortName,
             },
           ]);
         } else {
           const checkDuplicate =
             tabsList.length > 0 &&
-            tabsList.filter((tab) => tab.key === response.response.shortName);
+            tabsList.filter((tab) => tab.key === response.shortName);
           if (checkDuplicate?.length == 0) {
             setTabsList([
               ...tabsList,
               {
-                title: response.response.title,
+                title: response.title,
                 content: "MiteBodyContainer",
-                key: response.response.shortName,
+                key: info.node.shortName,
               },
             ]);
           }

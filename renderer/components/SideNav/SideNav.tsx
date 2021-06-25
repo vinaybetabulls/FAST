@@ -12,7 +12,7 @@ const SideNav = () => {
         height: "100%",
       }}
       className="sideNavContianer"
-      maxWidth="20%"
+      maxWidth="35%"
       minWidth="20%"
       // minHeight="682px"
       // maxHeight="682px"

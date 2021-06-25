@@ -8,19 +8,17 @@ const { TabPane } = Tabs;
 
 const TabView = () => {
   // const [newTabIndex, setNewTabIndex] = useState(0);
-  const { tabsList, setTabsList } = useContext(AppContext);
-  let [activeKey, setActiveKey] = useState(
-    !!tabsList[0]?.key ? tabsList[0].key : ""
-  );
+  const { tabsList, setTabsList, activeTabKey } = useContext(AppContext);
+  let [activeKey, setActiveKey] = useState(activeTabKey);
   const onChange = (activeKey) => {
     setActiveKey(activeKey);
   };
 
   useEffect(() => {
     if (tabsList[0]) {
-      setActiveKey(tabsList[tabsList.length - 1].key);
+      setActiveKey(activeTabKey);
     }
-  }, [tabsList]);
+  }, [tabsList, activeTabKey]);
   const remove = (event) => {
     const targetKey = event;
     let lastIndex;
