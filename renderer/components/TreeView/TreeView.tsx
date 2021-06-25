@@ -4,6 +4,7 @@ import { treeMocTreekData } from "../../common/data/treeData";
 import responsiveObserve from "antd/lib/_util/responsiveObserve";
 import Modal from "../Modal/Modal";
 import TestCaseForm from "../TestCase/CreateTestCase/CreateTestCase";
+import TestSuiteForm from "../TestCase/CreateTestSuite/CreateTestSuite";
 
 import ProjectLevelMenu from "../MenuCard/ProjectLevelMenu";
 import TestSuiteLevelMeu from "../MenuCard/TestSuiteLevelMeu";
@@ -44,6 +45,7 @@ const TreeView = () => {
   const [isModalOpen, setModalOpen] = useState(false);
   const [treeLevelForm, setTreeLevelForm] = useState("");
   const [isTestCaseModal, setTestCaseModal] = useState(false);
+  const [isTestSuiteModal, setTestSuiteModal] = useState(false);
   const [selectedShortName, setSelectedShortName] = useState();
   const { tabsList, setTabsList, setActiveTabKey } = useContext(AppContext);
   const ref = useRef();
@@ -184,6 +186,10 @@ const TreeView = () => {
     return;
   };
 
+  const handleCreateTestSuite = (values: any) => {
+
+  }
+
   const onSelect = (selectedKeys, info) => {
     console.log("selected", selectedKeys, info);
     let response;
@@ -272,10 +278,13 @@ const TreeView = () => {
 
   const handleTestSuiteModal = () => {
     setModalOpen(true);
+    setTestSuiteModal(true)
+    setTestCaseModal(false);
   };
 
   const handleTestCaseModal = () => {
     setModalOpen(true);
+    setTestSuiteModal(false)
     setTestCaseModal(true);
   };
 
@@ -320,6 +329,14 @@ const TreeView = () => {
               setOpen={handleModalClose}
             />
           )}
+          {
+            isTestSuiteModal && (
+              <TestSuiteForm
+              onSubmit={handleCreateTestCase}
+              setOpen={handleModalClose}
+              />
+            )
+          }
         </Modal>
       )}
       <Tree
