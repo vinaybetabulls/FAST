@@ -16,7 +16,7 @@ const ProjectNavigatorHeading = () => {
         <RadioButton value="TestSession">TestSession</RadioButton>
       </RadioGroup> */}
       <div className="card-container">
-        <Tabs type="card">
+        <Tabs type="card" className="project-nav-tree" id="style-1">
           <TabPane tab="Test Case" key="1">
             <TreeView />
           </TabPane>

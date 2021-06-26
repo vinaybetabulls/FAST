@@ -41,6 +41,11 @@ const TabView = () => {
   const onEdit = () => {};
   return (
     <div style={{width: '100%'}}>
+      { tabsList.length === 0 && 
+      <div className="project-nav-title">
+        <h3 style={{visibility: 'hidden'}}> FAST </h3>
+      </div>
+      }
       {tabsList.length > 0 ? (
         <Tabs
           hideAdd

@@ -134,7 +134,7 @@ const MiteBodyContainer =   () => {
                                     </li>
                                 </ul>
                             </div>
-                            <Tabs type="card">
+                            <Tabs type="card" style={{}}>
                                 <TabPane tab={
                                     <span> <FormOutlined style={{ fontSize: '16px' }} />Overview</span>
                                 }

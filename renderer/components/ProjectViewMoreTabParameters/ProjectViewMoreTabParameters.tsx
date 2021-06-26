@@ -59,11 +59,11 @@ const ProjectViewMoreTabParameters = () => {
     return (
         <div>
             <div>
-                <h3>Paramters Values Table</h3>
+                <h3 style={{padding: '0 14px'}}>Paramters Values Table</h3>
                 <Table columns={parametesValueTableColumns} data={[]} displayPagination={false}/>
             </div>
             <div>
-                <h3>Paramter Table</h3>
+                <h3 style={{padding: '0 14px'}}>Paramter Table</h3>
                 <Table columns={parametesTableColumns} data={[]} displayPagination={false}/>
             </div>
         </div>
