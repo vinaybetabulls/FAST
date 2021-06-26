@@ -16,6 +16,8 @@ const validationSchema = Yup.object().shape({
 
 const initialValues = {
   description: "",
+  status: "",
+  category: ""
 };
 
 type Props = {
@@ -57,7 +59,7 @@ const CreateTestCase = (props: Props) => {
               </FormItem>
             </div>
             <div className="form-section">
-              <FormItem name="heading">
+              <FormItem name="category">
                 <label>Category</label>
                 <Select
                   defaultValue="heading"
@@ -85,13 +87,13 @@ const CreateTestCase = (props: Props) => {
               </FormItem>
             </div>
             <div className="form-section">
-              <FormItem name="draft">
+              <FormItem name="status">
                 <label>Status</label>
                 <Select
                   defaultValue="draft"
                   style={{ width: "100%" }}
                   onChange={handleChange}
-                  name="draft"
+                  name="status"
                 >
                   <Select.Option value="draft">draft</Select.Option>
                   <Select.Option value="proposed">proposed</Select.Option>

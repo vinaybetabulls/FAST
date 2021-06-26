@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useRef, useContext } from "react";
 import { Menu, Tree } from "antd";
-import { treeMocTreekData } from "../../common/data/treeData";
 import responsiveObserve from "antd/lib/_util/responsiveObserve";
 import Modal from "../Modal/Modal";
 import TestCaseForm from "../TestCase/CreateTestCase/CreateTestCase";
@@ -40,14 +39,14 @@ function useOnClickOutside(ref, handler) {
   );
 }
 const TreeView = () => {
-  const [treeData, setTreeData] = useState(treeMocTreekData);
   const [isOPen, setOpen] = useState(false);
   const [isModalOpen, setModalOpen] = useState(false);
   const [treeLevelForm, setTreeLevelForm] = useState("");
   const [isTestCaseModal, setTestCaseModal] = useState(false);
   const [isTestSuiteModal, setTestSuiteModal] = useState(false);
   const [selectedShortName, setSelectedShortName] = useState();
-  const { tabsList, setTabsList, setActiveTabKey } = useContext(AppContext);
+  const { tabsList, setTabsList, setActiveTabKey, treeData, setTreeData } =
+    useContext(AppContext);
   const ref = useRef();
   useOnClickOutside(ref, () => setOpen(false));
 
@@ -155,8 +154,25 @@ const TreeView = () => {
       return v.toString(16);
     });
   }
+  // to generate random key
+  function uuidv4ForPC() {
+    return "xxx_4xx".replace(/[xy]/g, function (c) {
+      const r = (Math.random() * 16) | 0;
+      const v = c == "x" ? r : (r & 0x3) | 0x8;
+      return v.toString(16);
+    });
+  }
+  // to generate porjectId
+  function uuidv4ForProjectId() {
+    return "xxx_4xx".replace(/[xy]/g, function (c) {
+      const r = (Math.random() * 16) | 0;
+      const v = c == "x" ? r : (r & 0x3) | 0x8;
+      return v.toString(16);
+    });
+  }
 
   const handleCreateTestCase = (values: any) => {
+    console.log({values})
     let response;
     const updatedTree = treeData.map((element) => {
       level = 0;
@@ -167,6 +183,13 @@ const TreeView = () => {
             title: `${values.description}_${uuidv4()}`,
             key: uuidv4(),
             shortName: `${values.description}_${uuidv4()}`,
+            createdBy: uuidv4ForPC(),
+            modifiedBy: uuidv4ForPC(),
+            description: values.description,
+            projectStatus: values.status,
+            state: "Open",
+            projectId: uuidv4ForProjectId(),
+            priority: values.priority
           });
         } else {
           response.response.children = [];
@@ -174,6 +197,13 @@ const TreeView = () => {
             title: `${values.description}_${uuidv4()}`,
             key: uuidv4(),
             shortName: `${values.description}_${uuidv4()}`,
+            createdBy: uuidv4ForPC(),
+            modifiedBy: uuidv4ForPC(),
+            description: values.description,
+            projectStatus: values.status,
+            state: "Open",
+            projectId: uuidv4ForProjectId(),
+            priority: values.priority
           });
         }
         return { ...response, ...element };
@@ -186,9 +216,7 @@ const TreeView = () => {
     return;
   };
 
-  const handleCreateTestSuite = (values: any) => {
-
-  }
+  const handleCreateTestSuite = (values: any) => {};
 
   const onSelect = (selectedKeys, info) => {
     console.log("selected", selectedKeys, info);
@@ -278,13 +306,13 @@ const TreeView = () => {
 
   const handleTestSuiteModal = () => {
     setModalOpen(true);
-    setTestSuiteModal(true)
+    setTestSuiteModal(true);
     setTestCaseModal(false);
   };
 
   const handleTestCaseModal = () => {
     setModalOpen(true);
-    setTestSuiteModal(false)
+    setTestSuiteModal(false);
     setTestCaseModal(true);
   };
 
@@ -329,14 +357,12 @@ const TreeView = () => {
               setOpen={handleModalClose}
             />
           )}
-          {
-            isTestSuiteModal && (
-              <TestSuiteForm
+          {isTestSuiteModal && (
+            <TestSuiteForm
               onSubmit={handleCreateTestCase}
               setOpen={handleModalClose}
-              />
-            )
-          }
+            />
+          )}
         </Modal>
       )}
       <Tree

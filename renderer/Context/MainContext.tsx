@@ -1,4 +1,5 @@
 import React, { createContext, useState } from "react";
+import { treeMockTreekData } from "../common/data/treeData";
 
 export const AppContext = createContext(null);
 
@@ -7,7 +8,15 @@ const initialState = [];
 export const AppProvider = (props) => {
   const [tabsList, setTabsList] = useState(initialState);
   const [activeTabKey, setActiveTabKey] = useState();
-  const values = { tabsList, setTabsList, activeTabKey, setActiveTabKey };
+  const [treeData, setTreeData] = useState(treeMockTreekData);
+  const values = {
+    tabsList,
+    setTabsList,
+    activeTabKey,
+    setActiveTabKey,
+    treeData,
+    setTreeData,
+  };
   return (
     <AppContext.Provider value={values}>{props.children}</AppContext.Provider>
   );
