@@ -3,12 +3,14 @@ import { AppContext } from "../../Context/MainContext";
 import { Empty, Tabs } from "antd";
 import MiteBodyContainer from "../Main/MiteBodyContainer/MiteBodyContainer";
 import { CloseOutlined } from "@ant-design/icons";
+import { getProjectSummaryTable } from "../../utils/tree";
 
 const { TabPane } = Tabs;
 
 const TabView = () => {
   // const [newTabIndex, setNewTabIndex] = useState(0);
-  const { tabsList, setTabsList, activeTabKey, setActiveTabKey } = useContext(AppContext);
+  const { tabsList, setTabsList, activeTabKey, setActiveTabKey } =
+    useContext(AppContext);
   // let [activeKey, setActiveKey] = useState(activeTabKey);
   const onChange = (activeKey) => {
     setActiveTabKey(activeKey);
@@ -42,13 +44,22 @@ const TabView = () => {
     setTabsList(panes);
   };
   const onEdit = () => {};
+  const getTabTtile = (icon, title) => {
+    console.log(icon);
+    return (
+      <>
+        <span>{icon}</span>
+        <span>{title}</span>
+      </>
+    );
+  };
   return (
-    <div style={{width: '80%'}}>
-      { tabsList.length === 0 && 
-      <div className="project-nav-title">
-        <h3 style={{visibility: 'hidden'}}> FAST </h3>
-      </div>
-      }
+    <div style={{ width: "80%" }}>
+      {tabsList.length === 0 && (
+        <div className="project-nav-title">
+          <h3 style={{ visibility: "hidden" }}> FAST </h3>
+        </div>
+      )}
       {tabsList.length > 0 ? (
         <Tabs
           hideAdd
@@ -60,13 +71,13 @@ const TabView = () => {
         >
           {tabsList.map((pane) => (
             <TabPane
-              tab={pane.title}
+              tab={getTabTtile(pane.icon, pane.title)}
               key={pane.key}
               closeIcon={
                 <CloseOutlined onClick={() => remove(pane.key)} id={pane.key} />
               }
             >
-              {<MiteBodyContainer shortName={pane.key}/>}
+              {<MiteBodyContainer shortName={pane.key} />}
             </TabPane>
           ))}
         </Tabs>

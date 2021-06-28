@@ -126,6 +126,7 @@ const TreeView = () => {
         response: treeObject,
         level,
         title: treeObject.title,
+        icon: treeObject.icon,
         shortName: treeObject.shortName,
       };
     } else {
@@ -137,6 +138,7 @@ const TreeView = () => {
             ...response,
             level,
             title: response.title,
+            icon: response.icon,
             shortName: response.shortName,
           };
       }
@@ -172,7 +174,7 @@ const TreeView = () => {
   }
 
   const handleCreateTestCase = (values: any) => {
-    console.log({values})
+    console.log({ values });
     let response;
     const updatedTree = treeData.map((element) => {
       level = 0;
@@ -180,7 +182,7 @@ const TreeView = () => {
       if (response && response.response) {
         if (response.response.children) {
           response.response.children.push({
-            title: `${values.description}_${uuidv4()}`,
+            title: `${values.description}`,
             key: uuidv4(),
             shortName: `${values.description}_${uuidv4()}`,
             createdBy: uuidv4ForPC(),
@@ -189,7 +191,7 @@ const TreeView = () => {
             projectStatus: values.status,
             state: "Open",
             projectId: uuidv4ForProjectId(),
-            priority: values.priority
+            priority: values.priority,
           });
         } else {
           response.response.children = [];
@@ -203,7 +205,7 @@ const TreeView = () => {
             projectStatus: values.status,
             state: "Open",
             projectId: uuidv4ForProjectId(),
-            priority: values.priority
+            priority: values.priority,
           });
         }
         return { ...response, ...element };
@@ -234,6 +236,7 @@ const TreeView = () => {
               title: response.title,
               content: "MiteBodyContainer",
               key: info.node.shortName,
+              icon: response.icon
             },
           ]);
         } else {
@@ -247,6 +250,7 @@ const TreeView = () => {
                 title: response.title,
                 content: "MiteBodyContainer",
                 key: info.node.shortName,
+                icon: response.icon
               },
             ]);
           }
@@ -366,7 +370,7 @@ const TreeView = () => {
         </Modal>
       )}
       <Tree
-        showLine={true}
+        showIcon
         defaultExpandedKeys={[treeData[0].key]}
         onSelect={onSelect}
         treeData={treeData}
