@@ -12,20 +12,25 @@ import {
 type Props = {
   top: number;
   left: number;
-  handleTestCaseModal: () => void
+  handleTestCaseModal: () => void;
+  handleBodyActiveTab: () => void;
 };
 
 const TestCaseMenu = (props: Props) => {
-  const { top, left, handleTestCaseModal } = props;
+  const { top, left, handleTestCaseModal, handleBodyActiveTab } = props;
   return (
     <Menu style={{ position: "absolute", top: top, left: left, zIndex: 999 }}>
-      <Menu.Item key="1">
-        <ProfileOutlined style={{ color: "#1890ff", fontSize: "18px" }} />
+      <Menu.Item key="1" onClick={handleBodyActiveTab}>
+        <ProfileOutlined
+          style={{ color: "#1890ff", fontSize: "18px" }}
+        />
         <span className="menu-text">View More Details</span>
       </Menu.Item>
       <Menu.Item key="2">
         <FolderAddOutlined style={{ color: "green", fontSize: "18px" }} />
-        <span className="menu-text" onClick={handleTestCaseModal}>Create Test case</span>
+        <span className="menu-text" onClick={handleTestCaseModal}>
+          Create Test case
+        </span>
       </Menu.Item>
       <Menu.Item key="3">
         <ImportOutlined style={{ color: "#3C8DAD", fontSize: "18px" }} />

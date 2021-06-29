@@ -40,7 +40,8 @@ const initialValues = {
 
 const MiteBodyContainer = (props: Props) => {
   const { shortName } = props;
-  const { treeData, setTreeData } = useContext(AppContext);
+  const { treeData, bodyTabActiveKey, setBodyTabActiveKey } =
+    useContext(AppContext);
   const [bodyContent, setBodyContent] = useState(initialValues);
 
   const getObject = (element, shortName) => {
@@ -60,6 +61,9 @@ const MiteBodyContainer = (props: Props) => {
       if (response) setBodyContent(response);
     });
   };
+  const handleTabChange = (selectedKey) => {
+    setBodyTabActiveKey(selectedKey);
+  };
   useEffect(() => {
     getTreeData(shortName);
   }, [shortName]);
@@ -70,7 +74,13 @@ const MiteBodyContainer = (props: Props) => {
             </div> */}
       <div className="mite-detail-view">
         <div className="summary-view">
-          <Tabs type="card" tabPosition="bottom" className="summary-tabs">
+          <Tabs
+            type="card"
+            tabPosition="bottom"
+            className="summary-tabs"
+            activeKey={bodyTabActiveKey}
+            onChange={handleTabChange}
+          >
             <TabPane
               tab={
                 <span>
@@ -210,28 +220,16 @@ const MiteBodyContainer = (props: Props) => {
                 </ul> */}
                 <div className="project-detail-list1">
                   <div className="project-detail">
-                    <div className="fast-label">
-                    Project ID:&nbsp;
-                    </div>
-                    <div className="fast-value">
-                    12345
-                    </div>
+                    <div className="fast-label">Project ID:&nbsp;</div>
+                    <div className="fast-value">12345</div>
                   </div>
                   <div className="project-detail">
-                    <div className="fast-label">
-                    Created By:&nbsp;
-                    </div>
-                    <div className="fast-value">
-                    {bodyContent?.createdBy}
-                    </div>
+                    <div className="fast-label">Created By:&nbsp;</div>
+                    <div className="fast-value">{bodyContent?.createdBy}</div>
                   </div>
                   <div className="project-detail">
-                    <div className="fast-label">
-                    Modified By:&nbsp;
-                    </div>
-                    <div className="fast-value">
-                    {bodyContent?.modifiedBy}
-                    </div>
+                    <div className="fast-label">Modified By:&nbsp;</div>
+                    <div className="fast-value">{bodyContent?.modifiedBy}</div>
                   </div>
                 </div>
               </div>
