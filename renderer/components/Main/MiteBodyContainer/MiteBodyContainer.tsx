@@ -246,7 +246,7 @@ const MiteBodyContainer = (props: Props) => {
                   }
                   key="1"
                 >
-                  <div className="project-detail-list1" style={{gridTemplateColumns: '20% 20% 20% 20% 20%' }}>
+                  {/* <div className="project-detail-list1" style={{gridTemplateColumns: '20% 20% 20% 20% 20%' }}>
                   <div className="project-detail">
                     <div className="fast-label">
                     State:&nbsp;
@@ -279,9 +279,9 @@ const MiteBodyContainer = (props: Props) => {
                     {bodyContent?.shortName}
                     </div>
                   </div>
-                </div>
+                </div> */}
 
-                  {/* <ul
+                  <ul
                     className="project-detail-list"
                     style={{ padding: "0 16px" }}
                   >
@@ -315,7 +315,7 @@ const MiteBodyContainer = (props: Props) => {
                         />
                       </span>
                     </li>
-                  </ul> */}
+                  </ul>
                   <div className="btn-container">
                     <Button type="primary">Save</Button>
                   </div>
