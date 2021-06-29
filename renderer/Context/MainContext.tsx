@@ -1,10 +1,6 @@
 import React, { createContext, useEffect, useState } from "react";
 import { treeMockTreekData } from "../common/data/treeData";
-import {
-  FolderFilled,
-  SmileOutlined,
-  FileFilled,
-} from "@ant-design/icons";
+import { FolderFilled, SmileOutlined, FileFilled } from "@ant-design/icons";
 import Image from "next/image";
 
 export const AppContext = createContext(null);
@@ -15,9 +11,9 @@ export const AppProvider = (props) => {
   const [tabsList, setTabsList] = useState(initialState);
   const [activeTabKey, setActiveTabKey] = useState();
   const [treeData, setTreeData] = useState(treeMockTreekData);
-
+  const [bodyTabActiveKey, setBodyTabActiveKey] = useState("1");
   const updateChildrenIcons = (children) => {
-    children.icon = <Image src="/svgs/test-case.svg" height="18" width="18"/>;
+    children.icon = <Image src="/svgs/test-case.svg" height="18" width="18" />;
     for (let i = 0; i < children?.children?.length; i++) {
       updateChildrenIcons(children.children[i]);
     }
@@ -29,7 +25,9 @@ export const AppProvider = (props) => {
     tree.icon = <Image src="/svgs/project.png" height="18" width="18" />;
     if (!!tree.children?.length) {
       for (let level1 = 0; level1 < tree.children.length; level1++) {
-        tree.children[level1].icon = <Image src="/svgs/folder_icon.svg" height="18" width="18" />;
+        tree.children[level1].icon = (
+          <Image src="/svgs/folder_icon.svg" height="18" width="18" />
+        );
         if (!!tree.children[level1]?.children?.length)
           for (
             let level2 = 0;
@@ -63,6 +61,8 @@ export const AppProvider = (props) => {
     setActiveTabKey,
     treeData,
     setTreeData,
+    bodyTabActiveKey,
+    setBodyTabActiveKey,
   };
   return (
     <AppContext.Provider value={values}>{props.children}</AppContext.Provider>

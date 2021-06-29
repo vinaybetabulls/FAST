@@ -13,26 +13,29 @@ import {
 type Props = {
   top: number;
   left: number;
-  handleTestSuiteModal: () => void
+  handleTestSuiteModal: () => void;
+  handleBodyActiveTab: () => void;
 };
 const TestSuiteMenu = (props: Props) => {
-  const { top, left, handleTestSuiteModal } = props;
+  const { top, left, handleTestSuiteModal, handleBodyActiveTab } = props;
   return (
     <Menu style={{ position: "absolute", top: top, left: left, zIndex: 999 }}>
-      <Menu.Item key="1">
+      <Menu.Item key="1" onClick={handleBodyActiveTab}>
         <ProfileOutlined style={{ color: "#1890ff", fontSize: "18px" }} />
         <span className="menu-text">View More Details</span>
       </Menu.Item>
       <Menu.Item key="2">
         <FolderAddOutlined style={{ color: "green", fontSize: "18px" }} />
-        <span className="menu-text" onClick={handleTestSuiteModal}>Create Test Suite</span>
+        <span className="menu-text" onClick={handleTestSuiteModal}>
+          Create Test Suite
+        </span>
       </Menu.Item>
       <Menu.Item key="3">
         <FolderOpenFilled style={{ color: "#FAC218", fontSize: "18px" }} />
         <span className="menu-text">Open Test Suite</span>
       </Menu.Item>
       <Menu.Item key="4">
-      <ImportOutlined style={{ color: "#3C8DAD", fontSize: "18px" }} />
+        <ImportOutlined style={{ color: "#3C8DAD", fontSize: "18px" }} />
         <span className="menu-text">Import Test Suite</span>
       </Menu.Item>
       <Menu.Item key="5">

@@ -45,8 +45,15 @@ const TreeView = () => {
   const [isTestCaseModal, setTestCaseModal] = useState(false);
   const [isTestSuiteModal, setTestSuiteModal] = useState(false);
   const [selectedShortName, setSelectedShortName] = useState();
-  const { tabsList, setTabsList, setActiveTabKey, treeData, setTreeData } =
-    useContext(AppContext);
+  const {
+    tabsList,
+    setTabsList,
+    setActiveTabKey,
+    treeData,
+    setTreeData,
+    setBodyTabActiveKey,
+  } = useContext(AppContext);
+  const [onRightClickEvent, setOnRightClickEvent] = useState();
   const ref = useRef();
   useOnClickOutside(ref, () => setOpen(false));
 
@@ -236,7 +243,7 @@ const TreeView = () => {
               title: response.title,
               content: "MiteBodyContainer",
               key: info.node.shortName,
-              icon: response.icon
+              icon: response.icon,
             },
           ]);
         } else {
@@ -250,7 +257,7 @@ const TreeView = () => {
                 title: response.title,
                 content: "MiteBodyContainer",
                 key: info.node.shortName,
-                icon: response.icon
+                icon: response.icon,
               },
             ]);
           }
@@ -260,6 +267,7 @@ const TreeView = () => {
   };
 
   const onRightClick = (event) => {
+    console.log({ event });
     let response;
     setOpen(true);
     setOpen(true);
@@ -300,6 +308,7 @@ const TreeView = () => {
       // }
     });
     //setTreeData(udatedTree);
+    setOnRightClickEvent(event);
   };
 
   const handleModalClose = () => {
@@ -320,6 +329,14 @@ const TreeView = () => {
     setTestCaseModal(true);
   };
 
+  const handleBodyActiveTab = () => {
+    console.log('handleBodyActiveTab')
+    const event = onRightClickEvent;
+    onSelect("", event);
+    setBodyTabActiveKey("2");
+    setOpen(false);
+  };
+
   return (
     <div>
       {isOPen && treeLevelForm === "ProjectLevel" && (
@@ -328,6 +345,7 @@ const TreeView = () => {
             top={top}
             left={left}
             handleTestSuiteModal={handleTestSuiteModal}
+            handleBodyActiveTab={handleBodyActiveTab}
           />
         </div>
       )}
@@ -337,6 +355,7 @@ const TreeView = () => {
             top={top}
             left={left}
             handleTestCaseModal={handleTestCaseModal}
+            handleBodyActiveTab={handleBodyActiveTab}
           />
         </div>
       )}
@@ -346,6 +365,7 @@ const TreeView = () => {
             top={top}
             left={left}
             handleTestCaseModal={handleTestCaseModal}
+            handleBodyActiveTab={handleBodyActiveTab}
           />
         </div>
       )}

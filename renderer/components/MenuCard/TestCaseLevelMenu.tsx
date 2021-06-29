@@ -15,13 +15,14 @@ type Props = {
   top: number;
   left: number;
   handleTestCaseModal: () => void;
+  handleBodyActiveTab: () => void;
 };
 
 const TestCaseLevelMenu = (props: Props) => {
-  const { top, left, handleTestCaseModal } = props;
+  const { top, left, handleTestCaseModal, handleBodyActiveTab } = props;
   return (
     <Menu style={{ position: "absolute", top: top, left: left, zIndex: 999 }}>
-      <Menu.Item key="1">
+      <Menu.Item key="1" onClick={handleBodyActiveTab}>
         <ProfileOutlined style={{ color: "#1890ff", fontSize: "18px" }} />
         <span className="menu-text">View More Details</span>
       </Menu.Item>
@@ -34,7 +35,9 @@ const TestCaseLevelMenu = (props: Props) => {
         <span className="menu-text">Copy Test case Ctrl+C</span>
       </Menu.Item>
       <Menu.Item key="3" disabled>
-        <SnippetsOutlined  style={{ color: "rgb(20 134 201)", fontSize: "18px" }}/>
+        <SnippetsOutlined
+          style={{ color: "rgb(20 134 201)", fontSize: "18px" }}
+        />
         <span className="menu-text">Paste Test case Ctrl+V</span>
       </Menu.Item>
       <Menu.Item key="4">
