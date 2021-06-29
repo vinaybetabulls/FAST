@@ -150,14 +150,15 @@ label {
   background-color: rgb(211, 226, 240);
 }
 .summary-tabs > .ant-tabs-content-holder {
-  height: 578px;
+  height: 590px;
   overflow-y: auto;
 }
 .top-tabs .ant-tabs-tab-btn {
-  max-width: 120px;
+  max-width: 125px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  width: 125px;
 }
 tr:nth-child(even) {
   background-color: #f7f8f8;
@@ -201,4 +202,21 @@ tr:nth-child(even) {
 {
   /* background: rgba(0, 0, 0, 0.5); */
   background-color: #dbdbdb;
+}
+.tabs-align {
+  display: flex;
+  align-items: center;
+}
+.tabs-align div {
+  top: 2px;
+}
+.top-tabs .ant-tabs-nav {
+  margin-bottom: 2px !important;
+}
+.summary-tabs .ant-tabs-nav-wrap {
+  background: #b8d2e3;
+}
+.ant-table-thead > tr > th, .ant-table-tbody > tr > td, .ant-table tfoot > tr > th, .ant-table tfoot > tr > td {
+  padding: 6px !important;
+  font-size: 13px !important;
 }

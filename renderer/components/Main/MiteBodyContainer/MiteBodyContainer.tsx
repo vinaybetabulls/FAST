@@ -192,7 +192,7 @@ const MiteBodyContainer = (props: Props) => {
               key="2"
             >
               <div className="view-more-container">
-                <ul className="project-detail-list">
+                {/* <ul className="project-detail-list">
                   <li>
                     <span className="fast-label">Project ID:&nbsp;</span>
                     <span className="fast-value">12345</span>
@@ -207,7 +207,33 @@ const MiteBodyContainer = (props: Props) => {
                       {bodyContent?.modifiedBy}
                     </span>
                   </li>
-                </ul>
+                </ul> */}
+                <div className="project-detail-list1">
+                  <div className="project-detail">
+                    <div className="fast-label">
+                    Project ID:&nbsp;
+                    </div>
+                    <div className="fast-value">
+                    12345
+                    </div>
+                  </div>
+                  <div className="project-detail">
+                    <div className="fast-label">
+                    Created By:&nbsp;
+                    </div>
+                    <div className="fast-value">
+                    {bodyContent?.createdBy}
+                    </div>
+                  </div>
+                  <div className="project-detail">
+                    <div className="fast-label">
+                    Modified By:&nbsp;
+                    </div>
+                    <div className="fast-value">
+                    {bodyContent?.modifiedBy}
+                    </div>
+                  </div>
+                </div>
               </div>
               <Tabs type="card" style={{}}>
                 <TabPane
@@ -220,7 +246,42 @@ const MiteBodyContainer = (props: Props) => {
                   }
                   key="1"
                 >
-                  <ul
+                  <div className="project-detail-list1" style={{gridTemplateColumns: '20% 20% 20% 20% 20%' }}>
+                  <div className="project-detail">
+                    <div className="fast-label">
+                    State:&nbsp;
+                    </div>
+                    <div className="fast-value">
+                    {bodyContent?.state}
+                    </div>
+                  </div>
+                  <div className="project-detail">
+                    <div className="fast-label">
+                    Project:&nbsp;
+                    </div>
+                    <div className="fast-value">
+                    {bodyContent?.title}
+                    </div>
+                  </div>
+                  <div className="project-detail">
+                    <div className="fast-label">
+                    Project Status:&nbsp;
+                    </div>
+                    <div className="fast-value">
+                    Active
+                    </div>
+                  </div>
+                  <div className="project-detail">
+                    <div className="fast-label">
+                    Project Short Name:&nbsp;
+                    </div>
+                    <div className="fast-value">
+                    {bodyContent?.shortName}
+                    </div>
+                  </div>
+                </div>
+
+                  {/* <ul
                     className="project-detail-list"
                     style={{ padding: "0 16px" }}
                   >
@@ -254,7 +315,7 @@ const MiteBodyContainer = (props: Props) => {
                         />
                       </span>
                     </li>
-                  </ul>
+                  </ul> */}
                   <div className="btn-container">
                     <Button type="primary">Save</Button>
                   </div>

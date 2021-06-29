@@ -1,10 +1,11 @@
 import React, { createContext, useEffect, useState } from "react";
 import { treeMockTreekData } from "../common/data/treeData";
 import {
-  FolderOpenFilled,
+  FolderFilled,
   SmileOutlined,
-  ExportOutlined,
+  FileFilled,
 } from "@ant-design/icons";
+import Image from "next/image";
 
 export const AppContext = createContext(null);
 
@@ -16,7 +17,7 @@ export const AppProvider = (props) => {
   const [treeData, setTreeData] = useState(treeMockTreekData);
 
   const updateChildrenIcons = (children) => {
-    children.icon = <ExportOutlined />;
+    children.icon = <Image src="/svgs/test-case.svg" height="18" width="18"/>;
     for (let i = 0; i < children?.children?.length; i++) {
       updateChildrenIcons(children.children[i]);
     }
@@ -24,10 +25,11 @@ export const AppProvider = (props) => {
     return children;
   };
   const updateIconsForTree = (tree) => {
-    tree.icon = <FolderOpenFilled />;
+    // <FolderFilled style={{color: "#FAC218" }} />
+    tree.icon = <Image src="/svgs/project.png" height="18" width="18" />;
     if (!!tree.children?.length) {
       for (let level1 = 0; level1 < tree.children.length; level1++) {
-        tree.children[level1].icon = <SmileOutlined />;
+        tree.children[level1].icon = <Image src="/svgs/test-suite.svg" height="18" width="18" />;
         if (!!tree.children[level1]?.children?.length)
           for (
             let level2 = 0;

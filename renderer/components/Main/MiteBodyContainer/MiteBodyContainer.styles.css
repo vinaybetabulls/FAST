@@ -74,7 +74,7 @@
 }
 .view-more-container {
     /* padding: 0 16px; */
-    margin-bottom: 24px;
+    margin-bottom: 8px;
 }
 .project-detail-list {
     display: table;
@@ -107,3 +107,18 @@
     height: 589px;
     overflow: hidden;
 } */
+.project-detail-list1 {
+    padding: 16px;
+    display: grid;
+    grid-template-columns: 20% 20% 20% 20% 20%;
+}
+.project-detail-list1 .fast-label, .project-detail-list1 .fast-value {
+    width: 100%;
+    font-weight: 400;
+}
+.project-detail-list1 .fast-label {
+    color: #999;
+}
+.project-detail:not(:last-child) {
+    margin-right: 8px;
+}

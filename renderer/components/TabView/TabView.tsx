@@ -48,8 +48,8 @@ const TabView = () => {
     console.log(icon);
     return (
       <>
-        <span>{icon}</span>
-        <span>{title}</span>
+        <span style={{position: "relative", top: "4px"}}>{icon}</span>
+        <span style={{position: "relative", left: "4px"}}>{title}</span>
       </>
     );
   };
