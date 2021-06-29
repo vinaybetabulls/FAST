@@ -12,13 +12,13 @@ const CloseTabMenu = (props: Props) => {
   const { top, left, onCloseAllTabs, onClose, closeOtherTabs } = props;
   return (
     <Menu style={{ position: "absolute", top: top, left: left, zIndex: 999 }}>
-      <Menu.Item key="1">
-        <span className="menu-text" onClick={onClose}>
+      <Menu.Item key="1" onClick={onClose}>
+        <span className="menu-text">
           Close
         </span>
       </Menu.Item>
-      <Menu.Item key="2">
-        <span className="menu-text" onClick={onCloseAllTabs}>
+      <Menu.Item key="2" onClick={onCloseAllTabs}>
+        <span className="menu-text">
           Close all
         </span>
       </Menu.Item>

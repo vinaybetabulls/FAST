@@ -121,13 +121,7 @@ const TabView = () => {
 
   const closeOtherTabs = () => {
     const targetKey = selectedTabText;
-    let lastIndex;
     let newActiveTabKey;
-    tabsList.forEach((pane, i) => {
-      if (pane.title === targetKey) {
-        lastIndex = i;
-      }
-    });
     const panes = tabsList.filter((pane) => pane.title === targetKey);
     if (panes.length) {
       newActiveTabKey = panes[0].key;
