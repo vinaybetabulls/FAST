@@ -79,6 +79,9 @@ const TabView = () => {
     );
   };
   const handleRightClick = (e) => {
+    console.log(e);
+    e.stopPropagation()
+    e.preventDefault()
     if (e.type === "contextmenu") {
       setVisible(true);
       console.log({ context: e });

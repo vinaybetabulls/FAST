@@ -169,7 +169,7 @@ const MiteBodyContainer = (props: Props) => {
                     
                     {parameterValues.length > 0 && (
                       <div className="parameters-table">
-                        <ParametersTab data = {parameterValues} />
+                        <ParametersTab data = {parameterValues} handleAddNewParameter={handleAddNewParameter}/>
                       </div>
                     )}
                     {!parameterValues.length &&
