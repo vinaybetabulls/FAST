@@ -21,7 +21,6 @@ const ProjectSummaryTab = (props: Props) => {
     const summaryData =
       !!findProject?.children?.length &&
       findProject?.children?.map((project, index) => {
-        console.log({ project });
         return {
           Sno: ++index,
           Id: project.projectId,

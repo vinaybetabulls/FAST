@@ -1,16 +1,15 @@
 import React, { useEffect, useState, useRef, useContext } from "react";
 import { Menu, Tree } from "antd";
-import responsiveObserve from "antd/lib/_util/responsiveObserve";
 import Modal from "../Modal/Modal";
 import TestCaseForm from "../TestCase/CreateTestCase/CreateTestCase";
 import TestSuiteForm from "../TestCase/CreateTestSuite/CreateTestSuite";
+import OpenTestSuite from "../TestCase/OpenTestSuite/OpenTestSuite";
 
 import ProjectLevelMenu from "../MenuCard/ProjectLevelMenu";
 import TestSuiteLevelMeu from "../MenuCard/TestSuiteLevelMeu";
 import TestCaseLevelMenu from "../MenuCard/TestCaseLevelMenu";
 
 import { AppContext } from "../../Context/MainContext";
-import MiteBodyContainer from "../Main/MiteBodyContainer/MiteBodyContainer";
 
 function useOnClickOutside(ref, handler) {
   useEffect(
@@ -45,6 +44,7 @@ const TreeView = () => {
   const [isTestCaseModal, setTestCaseModal] = useState(false);
   const [isTestSuiteModal, setTestSuiteModal] = useState(false);
   const [selectedShortName, setSelectedShortName] = useState();
+  const [openTestSuite, setOpenTestSuite] = useState(false);
   const {
     tabsList,
     setTabsList,
@@ -52,6 +52,8 @@ const TreeView = () => {
     treeData,
     setTreeData,
     setBodyTabActiveKey,
+    setRemovedTestSuite,
+    removedTestSuite,
   } = useContext(AppContext);
   const [onRightClickEvent, setOnRightClickEvent] = useState();
   const ref = useRef();
@@ -126,7 +128,14 @@ const TreeView = () => {
   const createTestSuite = () => {};
 
   // get the object of selected element
+  const updateChildrenIcons = (children) => {
+    for (let i = 0; i < children?.children?.length; i++) {
+      updateChildrenIcons(children.children[i]);
+    }
+    return children;
+  };
   function getObject(treeObject, matchElement) {
+    level = 0;
     if (treeObject.shortName == matchElement) {
       level = level + 1;
       return {
@@ -151,7 +160,9 @@ const TreeView = () => {
       }
     }
   }
+
   React.useEffect(() => {
+    console.log({ updatedTree: treeData });
     setTreeData(treeData);
   }, [treeData]);
 
@@ -181,7 +192,6 @@ const TreeView = () => {
   }
 
   const handleCreateTestCase = (values: any) => {
-    console.log({ values });
     let response;
     const updatedTree = treeData.map((element) => {
       level = 0;
@@ -225,10 +235,7 @@ const TreeView = () => {
     return;
   };
 
-  const handleCreateTestSuite = (values: any) => {};
-
-  const onSelect = (selectedKeys, info) => {
-    console.log("selected", selectedKeys, info);
+  const onSelect = (selectedKeys, info, handleTab = null) => {
     let response;
     treeData.map((element) => {
       level = 0;
@@ -264,10 +271,11 @@ const TreeView = () => {
         }
       }
     });
+    if (handleTab) setBodyTabActiveKey("2");
+    else setBodyTabActiveKey("1");
   };
 
   const onRightClick = (event) => {
-    console.log({ event });
     let response;
     setOpen(true);
     setOpen(true);
@@ -330,11 +338,28 @@ const TreeView = () => {
   };
 
   const handleBodyActiveTab = () => {
-    console.log('handleBodyActiveTab')
-    const event = onRightClickEvent;
-    onSelect("", event);
-    setBodyTabActiveKey("2");
+    onSelect("", onRightClickEvent, "handleingActiveTab");
     setOpen(false);
+  };
+
+  const onTestSuiteCancel = () => {
+    let removedTestSuiteVal;
+    let shortName;
+    treeData.some(function (tree) {
+      return tree.children.some(function (children, i, bb) {
+        if (children.shortName === selectedShortName) {
+          shortName = tree.shortName;
+          removedTestSuiteVal = bb.splice(i, 1);
+          return true;
+        }
+      });
+    });
+    setOpen(false);
+    setTreeData([...treeData]);
+    setRemovedTestSuite([
+      ...removedTestSuite,
+      { data: removedTestSuiteVal, shortName },
+    ]);
   };
 
   return (
@@ -346,6 +371,7 @@ const TreeView = () => {
             left={left}
             handleTestSuiteModal={handleTestSuiteModal}
             handleBodyActiveTab={handleBodyActiveTab}
+            handleOpenTestSuite={() => setOpenTestSuite(true)}
           />
         </div>
       )}
@@ -356,6 +382,7 @@ const TreeView = () => {
             left={left}
             handleTestCaseModal={handleTestCaseModal}
             handleBodyActiveTab={handleBodyActiveTab}
+            handleRemoveTestSuite={onTestSuiteCancel}
           />
         </div>
       )}
@@ -388,6 +415,13 @@ const TreeView = () => {
             />
           )}
         </Modal>
+      )}
+      {openTestSuite && (
+        <OpenTestSuite
+          isOpen={openTestSuite}
+          handleOpenTestSuite={() => setOpenTestSuite(false)}
+          shortName={selectedShortName}
+        />
       )}
       <Tree
         showIcon

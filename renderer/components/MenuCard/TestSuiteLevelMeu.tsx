@@ -14,16 +14,15 @@ type Props = {
   left: number;
   handleTestCaseModal: () => void;
   handleBodyActiveTab: () => void;
+  handleRemoveTestSuite: () => void;
 };
 
 const TestCaseMenu = (props: Props) => {
-  const { top, left, handleTestCaseModal, handleBodyActiveTab } = props;
+  const { top, left, handleTestCaseModal, handleBodyActiveTab, handleRemoveTestSuite } = props;
   return (
     <Menu style={{ position: "absolute", top: top, left: left, zIndex: 999 }}>
       <Menu.Item key="1" onClick={handleBodyActiveTab}>
-        <ProfileOutlined
-          style={{ color: "#1890ff", fontSize: "18px" }}
-        />
+        <ProfileOutlined style={{ color: "#1890ff", fontSize: "18px" }} />
         <span className="menu-text">View More Details</span>
       </Menu.Item>
       <Menu.Item key="2">
@@ -54,7 +53,7 @@ const TestCaseMenu = (props: Props) => {
         <DeleteOutlined style={{ color: "#999", fontSize: "18px" }} />
         <span className="menu-text">Delete Del</span>
       </Menu.Item>
-      <Menu.Item key="7">
+      <Menu.Item key="7" onClick={handleRemoveTestSuite}>
         <CloseCircleOutlined style={{ color: "#De4f60", fontSize: "18px" }} />
         <span className="menu-text">Close</span>
       </Menu.Item>

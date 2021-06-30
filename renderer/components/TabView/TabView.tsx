@@ -46,7 +46,6 @@ const TabView = () => {
     }
   }, [tabsList, activeTabKey]);
   const remove = (event) => {
-    console.log({ event });
     const targetKey = event;
     let lastIndex;
     let newActiveTabKey;
@@ -70,7 +69,6 @@ const TabView = () => {
   };
   const onEdit = () => {};
   const getTabTtile = (icon, title) => {
-    console.log(icon);
     return (
       <>
         <span style={{ position: "relative", top: "4px" }}>{icon}</span>
@@ -81,7 +79,6 @@ const TabView = () => {
   const handleRightClick = (e) => {
     if (e.type === "contextmenu") {
       setVisible(true);
-      console.log({ context: e });
       setLeft(e.pageX);
       setTop(e.pageY - 50);
       setSelectedTabText(e.target.innerText);

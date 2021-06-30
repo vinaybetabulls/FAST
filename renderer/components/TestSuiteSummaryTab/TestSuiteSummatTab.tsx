@@ -77,7 +77,6 @@ const TestSuiteSummaryTab = (props: Props) => {
   };
 
   useEffect(() => {
-    console.log({ shortName });
     setSuiteSummaryData([]);
     treeData.map((tree) => {
       tree?.children?.map((level1) => {
@@ -88,7 +87,6 @@ const TestSuiteSummaryTab = (props: Props) => {
       });
     });
   }, [treeData, shortName]);
-  console.log({ suiteSummaryData });
   return (
     <div style={{ width: "100%" }}>
       <Table

@@ -15,9 +15,10 @@ type Props = {
   left: number;
   handleTestSuiteModal: () => void;
   handleBodyActiveTab: () => void;
+  handleOpenTestSuite: () => void;
 };
 const TestSuiteMenu = (props: Props) => {
-  const { top, left, handleTestSuiteModal, handleBodyActiveTab } = props;
+  const { top, left, handleTestSuiteModal, handleBodyActiveTab, handleOpenTestSuite } = props;
   return (
     <Menu style={{ position: "absolute", top: top, left: left, zIndex: 999 }}>
       <Menu.Item key="1" onClick={handleBodyActiveTab}>
@@ -30,7 +31,7 @@ const TestSuiteMenu = (props: Props) => {
           Create Test Suite
         </span>
       </Menu.Item>
-      <Menu.Item key="3">
+      <Menu.Item key="3" onClick={handleOpenTestSuite}>
         <FolderOpenFilled style={{ color: "#FAC218", fontSize: "18px" }} />
         <span className="menu-text">Open Test Suite</span>
       </Menu.Item>

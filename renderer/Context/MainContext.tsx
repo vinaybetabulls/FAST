@@ -12,12 +12,13 @@ export const AppProvider = (props) => {
   const [activeTabKey, setActiveTabKey] = useState();
   const [treeData, setTreeData] = useState(treeMockTreekData);
   const [bodyTabActiveKey, setBodyTabActiveKey] = useState("1");
+  const [removedTestSuite, setRemovedTestSuite] = useState([]);
+
   const updateChildrenIcons = (children) => {
     children.icon = <Image src="/svgs/test-case.svg" height="18" width="18" />;
     for (let i = 0; i < children?.children?.length; i++) {
       updateChildrenIcons(children.children[i]);
     }
-    console.log({ children });
     return children;
   };
   const updateIconsForTree = (tree) => {
@@ -43,17 +44,15 @@ export const AppProvider = (props) => {
     return tree;
   };
   const setIconsForTree = () => {
-    const updatedTreeDataWithIcons = treeData.map((tree) => {
+    treeData.map((tree) => {
       return updateIconsForTree(tree);
     });
-    console.log({ updatedTreeDataWithIcons });
-    // if (updatedTreeDataWithIcons) setTreeData(updatedTreeDataWithIcons);
   };
 
-  //console.log({ treeData });
   useEffect(() => {
     setIconsForTree();
   }, [treeData]);
+
   const values = {
     tabsList,
     setTabsList,
@@ -63,6 +62,8 @@ export const AppProvider = (props) => {
     setTreeData,
     bodyTabActiveKey,
     setBodyTabActiveKey,
+    removedTestSuite,
+    setRemovedTestSuite,
   };
   return (
     <AppContext.Provider value={values}>{props.children}</AppContext.Provider>

@@ -31,7 +31,6 @@ const CreateTestCase = (props: Props) => {
     initialValues,
     validationSchema,
     onSubmit: (values, formikHelpers) => {
-      console.log({ onsubmitvalues: values });
       onSubmit(values);
       formikHelpers.setSubmitting(false);
     },
