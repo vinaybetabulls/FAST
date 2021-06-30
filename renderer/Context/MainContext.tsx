@@ -27,7 +27,7 @@ export const AppProvider = (props) => {
     if (!!tree.children?.length) {
       for (let level1 = 0; level1 < tree.children.length; level1++) {
         tree.children[level1].icon = (
-          <Image src="/svgs/test-suite.svg" height="18" width="18" />
+          <Image src="/svgs/folder_icon.svg" height="18" width="18" />
         );
         if (!!tree.children[level1]?.children?.length)
           for (

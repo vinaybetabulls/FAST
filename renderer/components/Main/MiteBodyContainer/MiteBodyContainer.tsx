@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import "./MiteBodyContainer.styles.css";
 import { Empty, Input, Button } from "antd";
 import { Tabs } from "antd";
-
+import CreateParametersForm from '../../CreateParameters/CreateParameters'
 const { TextArea } = Input;
 const TabPane = Tabs.TabPane;
 import {
@@ -19,6 +19,8 @@ import ProjectSummaryTab from "../../ProjectSummaryTab/ProjectSummaryTab";
 import ProjectViewMoreTabParameters from "../../ProjectViewMoreTabParameters/ProjectViewMoreTabParameters";
 import { AppContext } from "../../../Context/MainContext";
 import TestSuiteSummaryTab from "../../TestSuiteSummaryTab/TestSuiteSummatTab";
+import Modal from "../../Modal/Modal"
+import ParametersTab from "../../ParametersTab/ParametersTab";
 
 type Props = {
   shortName: string;
@@ -43,7 +45,9 @@ const MiteBodyContainer = (props: Props) => {
   const { treeData, bodyTabActiveKey, setBodyTabActiveKey } =
     useContext(AppContext);
   const [bodyContent, setBodyContent] = useState(initialValues);
-
+  const [isOpen, setOpen] = useState(false);
+  const [isModalOpen, setModalOpen] = useState(false);
+  const [parameterValues, setParameterValues] = useState([])
   const getObject = (element, shortName) => {
     if (element.shortName === shortName) {
       return { ...element, level: 1 };
@@ -64,9 +68,25 @@ const MiteBodyContainer = (props: Props) => {
   const handleTabChange = (selectedKey) => {
     setBodyTabActiveKey(selectedKey);
   };
+  
+  const handleAddNewParameter = () => {
+    console.log("createNewParameter called...");
+    setModalOpen(true);
+  }
+  const handleModalClose = () => {
+    setModalOpen(false)
+  }
+  const handleCreateParameter = (values) => {
+    console.log("handleCreateParameter called");
+    setParameterValues([...parameterValues, values])
+    console.log(parameterValues);
+    setModalOpen(false)
+  }
   useEffect(() => {
     getTreeData(shortName);
   }, [shortName]);
+
+
   return (
     <div className="miteBodyConainer">
       {/* <div className="mite-nav-title">
@@ -135,7 +155,29 @@ const MiteBodyContainer = (props: Props) => {
                   }
                   key="2"
                 >
-                  Parameters
+                  <div className="parameter-content">
+                      <Modal
+                        isOpen={isModalOpen}
+                        title="Add New Parameter"
+                        setOpen={handleModalClose}
+                      >
+                        <CreateParametersForm
+                          onSubmit={handleCreateParameter}
+                          setOpen={handleModalClose}
+                        />
+                      </Modal>
+                    
+                    {parameterValues.length > 0 && (
+                      <div className="parameters-table">
+                        <ParametersTab data = {parameterValues} handleAddNewParameter={handleAddNewParameter}/>
+                      </div>
+                    )}
+                    {!parameterValues.length &&
+                      <div className="align-center" style={{ height: '520px' }}>
+                        <a onClick={handleAddNewParameter}>Click here</a>&nbsp;to add a new parameter.
+                      </div>
+                    }
+                  </div>
                 </TabPane>
                 <TabPane
                   tab={

@@ -278,7 +278,6 @@ const TreeView = () => {
   const onRightClick = (event) => {
     let response;
     setOpen(true);
-    setOpen(true);
     setLeft(event.event.pageX);
     setTop(event.event.pageY - 50);
     setSelectedShortName(event.node.shortName);
